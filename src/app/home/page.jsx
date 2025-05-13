@@ -43,7 +43,7 @@ export default function Home() {
                     <li>Skeleton</li>
                 </ul>
             </div>
-            <Link href="/countries">
+            <Link href="/users">
                 <button className={styles.button}>Acessar Países</button>
             </Link>
         </div>
