@@ -1,50 +1,102 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import UserCard from "./UserCard";
+import React, { useEffect, useState, useMemo } from "react";
+import axios from "axios";
+import { Skeleton, message } from "antd";
+import { useRouter } from "next/navigation";
+import useSessionStorage from "../lib/sessionStorage";
+import UserSearchHeader from "../components/UserSearchHeader";
+import UserGrid from "../components/UserGrid";
+import PaginationBar from "../components/PaginationBar";
+import styles from "../../app/styles/UserProfile.module.css";
 
-const UsersPage = () => {
-  const [users, setUsers] = useState([]);
+export default function UsersPage() {
+  const router = useRouter();
+  const [users, setUsers] = useSessionStorage("users", []);
+  const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [current, setCurrent] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [connectionError, setConnectionError] = useState(false);
+  const [search, setSearch] = useState("");
+
+  const apiKey = "nUN1NOc7BuiiO7iSYR7gek0bxG821Z";
+  const headers = { "x-api-key": apiKey };
+
+  const fetchUsers = async () => {
+    setLoading(true);
+    const cachedData = sessionStorage.getItem("usersData");
+
+    if (cachedData) {
+      const parsed = JSON.parse(cachedData);
+      setUsers(parsed);
+      setFilteredData(parsed);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const { data } = await axios.get("http://localhost:4000/api/users", { headers });
+      setUsers(data);
+      setFilteredData(data);
+      sessionStorage.setItem("usersData", JSON.stringify(data));
+      setConnectionError(false);
+    } catch (err) {
+      setConnectionError(true);
+      message.error("Erro de conexão com o backend.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/users", {
-          headers: {
-            Authorization: "nUN1NOc7BuiiO7iSYR7gek0bxG821Z" 
-          },
-        });
-        if (!response.ok) {
-          throw new Error(`Erro na API: ${response.statusText}`);
-        }
-        const data = await response.json();
-        setUsers(data.data || []);
-      } catch (err) {
-        console.error("Erro ao buscar usuários:", err);
-        setError("Não foi possível carregar os usuários.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchUsers();
   }, []);
 
-  if (loading) return <p>Carregando usuários...</p>;
-  if (error) return <p>{error}</p>;
+  useEffect(() => {
+    const lower = search.toLowerCase();
+    setFilteredData(
+      users.filter(
+        (u) =>
+          u.name?.toLowerCase().includes(lower) ||
+          u.username?.toLowerCase().includes(lower)
+      )
+    );
+    setCurrent(1);
+  }, [search, users]);
+
+  const paginated = useMemo(() => {
+    return filteredData.slice((current - 1) * pageSize, current * pageSize);
+  }, [filteredData, current, pageSize]);
+
+  const handleClearCache = () => {
+    sessionStorage.removeItem("usersData");
+    setUsers([]);
+    setFilteredData([]);
+    fetchUsers();
+  };
 
   return (
-    <div>
-      <h1>Usuários</h1>
-      {users.length > 0 ? (
-        users.map((user) => <UserCard key={user.id} user={user} />)
+    <div className={styles.pageWrapper}>
+      <UserSearchHeader
+        search={search}
+        setSearch={setSearch}
+        handleClearCache={handleClearCache}
+      />
+      <PaginationBar
+        current={current}
+        pageSize={pageSize}
+        total={filteredData.length}
+        onChange={setCurrent}
+        onPageSizeChange={setPageSize}
+      />
+      {loading ? (
+        <Skeleton active />
+      ) : connectionError ? (
+        <p>Conexão com o backend falhou.</p>
       ) : (
-        <p>Nenhum usuário encontrado.</p>
+        <UserGrid users={paginated} router={router} />
       )}
     </div>
   );
-};
-
-export default UsersPage;
+}

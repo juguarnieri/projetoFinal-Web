@@ -1,0 +1,221 @@
+"use client";
+
+import { useEffect, useState, useMemo } from "react";
+import axios from "axios";
+import { Skeleton, message } from "antd";
+import { FaSearch } from "react-icons/fa";
+import styles from "../../app/styles/Feed.module.css";
+import PostCard from "../components/PostCard";
+import CommentsModal from "../components/CommentsModal";
+
+const API_URL = "http://localhost:4000";
+const API_KEY = "nUN1NOc7BuiiO7iSYR7gek0bxG821Z";
+const headers = { "x-api-key": API_KEY };
+
+export default function FeedPage() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [likeLoading, setLikeLoading] = useState({});
+  const [userLikes, setUserLikes] = useState({});
+  const [commentsVisible, setCommentsVisible] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [loadingComments, setLoadingComments] = useState(false);
+  const [searchInput, setSearchInput] = useState(""); // novo estado para o input
+  const [search, setSearch] = useState(""); // search agora só muda ao clicar na lupa
+  const [filteredData, setFilteredData] = useState([]);
+  const [current, setCurrent] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
+  const paginated = useMemo(() => {
+    return filteredData.slice((current - 1) * pageSize, current * pageSize);
+  }, [filteredData, current, pageSize]);
+
+  useEffect(() => {
+    async function fetchFeed() {
+      try {
+        setLoading(true);
+        const postsRes = await axios.get(`${API_URL}/api/posts`, { headers });
+
+        const enrichedPosts = await Promise.all(
+          (postsRes.data.data || []).map(async (post) => {
+            let like_count = 0;
+            let dislike_count = 0;
+            let comments = [];
+
+            try {
+              const likesRes = await axios.get(`${API_URL}/api/posts/${post.id}/likes`, { headers });
+              like_count = likesRes.data.likes ?? 0;
+            } catch {}
+
+            try {
+              const dislikesRes = await axios.get(`${API_URL}/api/posts/${post.id}/dislikes`, { headers });
+              dislike_count = dislikesRes.data.dislikes ?? 0;
+            } catch {}
+
+            try {
+              const commentsRes = await axios.get(`${API_URL}/api/comments/${post.id}`, { headers });
+              comments = Array.isArray(commentsRes.data) ? commentsRes.data : [];
+            } catch {}
+
+            return { ...post, like_count, dislike_count, comments };
+          })
+        );
+
+        setPosts(enrichedPosts);
+      } catch (err) {
+        message.error("Erro ao carregar feed.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchFeed();
+  }, []);
+
+  useEffect(() => {
+    const lower = search.toLowerCase();
+    setFilteredData(
+      posts.filter(
+        (p) =>
+          p.title?.toLowerCase().includes(lower) ||
+          p.caption?.toLowerCase().includes(lower) ||
+          p.username?.toLowerCase().includes(lower) ||
+          p.name?.toLowerCase().includes(lower)
+      )
+    );
+    setCurrent(1);
+  }, [search, posts]);
+
+  const handleLike = async (postId, userId = postId) => {
+    if (userLikes[postId] === "like") return;
+    setLikeLoading((prev) => ({ ...prev, [postId]: true }));
+
+    try {
+      await axios.post(`${API_URL}/api/posts/${postId}/like/${userId}`, {}, { headers });
+      setPosts((prev) =>
+        prev.map((p) =>
+          p.id === postId ? { ...p, like_count: (parseInt(p.like_count) || 0) + 1 } : p
+        )
+      );
+      setUserLikes((prev) => ({ ...prev, [postId]: "like" }));
+    } catch {
+      message.error("Erro ao curtir post.");
+    } finally {
+      setLikeLoading((prev) => ({ ...prev, [postId]: false }));
+    }
+  };
+
+  const handleUnlike = async (postId, userId = postId) => {
+    if (userLikes[postId] === "unlike") return;
+    setLikeLoading((prev) => ({ ...prev, [postId]: true }));
+
+    try {
+      await axios.post(`${API_URL}/api/posts/${postId}/unlike/${userId}`, {}, { headers });
+      setPosts((prev) =>
+        prev.map((p) =>
+          p.id === postId ? { ...p, like_count: Math.max((parseInt(p.like_count) || 1) - 1, 0) } : p
+        )
+      );
+      setUserLikes((prev) => ({ ...prev, [postId]: "unlike" }));
+    } catch {
+      message.error("Erro ao remover curtida.");
+    } finally {
+      setLikeLoading((prev) => ({ ...prev, [postId]: false }));
+    }
+  };
+
+  const handleOpenComments = async (postId) => {
+    setCommentsVisible(true);
+    setLoadingComments(true);
+    try {
+      const res = await axios.get(`${API_URL}/api/comments/${postId}`, { headers });
+      setComments(Array.isArray(res.data) ? res.data : []);
+    } catch {
+      setComments([]);
+    } finally {
+      setLoadingComments(false);
+    }
+  };
+
+  const handleCloseComments = () => {
+    setCommentsVisible(false);
+    setComments([]);
+  };
+
+  if (loading) return <Skeleton active />;
+
+  return (
+    <div className={styles.feedWrapper}>
+      <h2>Feed de Publicações</h2>
+
+      <div className={styles.feedHeader}>
+        <div className={styles.feedSearchGroup}>
+          <input
+            type="text"
+            placeholder="Pesquisar publicações, legendas ou usuário..."
+            value={searchInput}
+            onChange={e => setSearchInput(e.target.value)}
+            className={styles.feedSearchInput}
+          />
+          <button
+            onClick={() => setSearch(searchInput)}
+            className={styles.feedSearchButton}
+            title="Pesquisar"
+          >
+            <FaSearch />
+          </button>
+        </div>
+        <div>
+          <button
+            onClick={() => { setSearchInput(""); setSearch(""); setCurrent(1); }}
+            className={styles.feedClearButton}
+          >
+            Limpar busca
+          </button>
+        </div>
+      </div>
+
+      {paginated.length === 0 ? (
+        <p>Nenhuma publicação encontrada.</p>
+      ) : (
+        paginated.map((post) => (
+          <PostCard
+            key={post.id}
+            post={post}
+            API_URL={API_URL}
+            handleLike={handleLike}
+            handleUnlike={handleUnlike}
+            handleOpenComments={handleOpenComments}
+            likeLoading={likeLoading}
+            userLikes={userLikes}
+            userId={post.id}
+          />
+        ))
+      )}
+
+      <div className={styles.feedPagination}>
+        <button
+          onClick={() => setCurrent((c) => Math.max(1, c - 1))}
+          disabled={current === 1}
+        >
+          Anterior
+        </button>
+        Página {current} de {Math.ceil(filteredData.length / pageSize)}
+        <button
+          onClick={() => setCurrent((c) => c + 1)}
+          disabled={current >= Math.ceil(filteredData.length / pageSize)}
+        >
+          Próxima
+        </button>
+      </div>
+
+      <CommentsModal
+        visible={commentsVisible}
+        onClose={handleCloseComments}
+        comments={comments}
+        loadingComments={loadingComments}
+        API_URL={API_URL}
+      />
+    </div>
+  );
+}

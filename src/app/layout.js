@@ -1,14 +1,20 @@
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import "./styles/globals.css";
+
 export const metadata = {
-    title: "Projeto Final",
-    description: "Aplicação Next.js para o projeto final",
-  };
-  
-  export default function RootLayout({ children }) {
-    return (
-      <html lang="pt-BR">
-        <body>
-          {children}
-        </body>
-      </html>
-    );
-  }
+  title: "Meu App",
+  description: "Aplicação com Next.js",
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="pt-BR">
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
+    </html>
+  );
+}

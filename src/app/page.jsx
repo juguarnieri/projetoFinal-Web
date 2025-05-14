@@ -1,14 +1,30 @@
-"use client";
+import Link from "next/link";
 
-import React from "react";
-
-const HomePage = () => {
+export default function Home() {
   return (
-    <div>
-      <h1>Bem-vindo ao Projeto Final</h1>
-      <p>Esta é a página inicial.</p>
-    </div>
-  );
-};
+    <>
+      <header style={{ padding: "1rem", backgroundColor: "#f5f5f5" }}>
+        <h1>Meu App</h1>
+      </header>
 
-export default HomePage;
+      <main style={{ padding: "2rem" }}>
+        <p>Bem-vindo!</p>
+
+        <nav aria-label="Navegação principal">
+          <ul style={{ listStyle: "none", padding: 0 }}>
+            <li style={{ marginBottom: "0.5rem" }}>
+              <Link href="/home">🏠 Ir para Home</Link>
+            </li>
+            <li>
+              <Link href="/users">👤 Ir para Lista de Usuários</Link>
+            </li>
+          </ul>
+        </nav>
+      </main>
+
+      <footer style={{ padding: "1rem", textAlign: "center", backgroundColor: "#f0f0f0" }}>
+        <p>© 2025</p>
+      </footer>
+    </>
+  );
+}
