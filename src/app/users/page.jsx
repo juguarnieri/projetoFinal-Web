@@ -4,7 +4,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import { Skeleton, message } from "antd";
 import { useRouter } from "next/navigation";
-import useSessionStorage from "../lib/sessionStorage";
+import useSessionStorage from "../utils/sessionStorage";
 import UserSearchHeader from "../components/UserSearchHeader";
 import UserGrid from "../components/UserGrid";
 import PaginationBar from "../components/PaginationBar";
@@ -20,8 +20,7 @@ export default function UsersPage() {
   const [connectionError, setConnectionError] = useState(false);
   const [search, setSearch] = useState("");
 
-  const apiKey = "nUN1NOc7BuiiO7iSYR7gek0bxG821Z";
-  const headers = { "x-api-key": apiKey };
+  const headers = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
 
   const fetchUsers = async () => {
     setLoading(true);

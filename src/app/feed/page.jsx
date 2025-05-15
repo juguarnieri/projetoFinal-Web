@@ -4,13 +4,12 @@ import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import { Skeleton, message } from "antd";
 import { FaSearch } from "react-icons/fa";
-import styles from "../../app/styles/Feed.module.css";
+import styles from "./Feed.module.css";
 import PostCard from "../components/PostCard";
 import CommentsModal from "../components/CommentsModal";
 
 const API_URL = "http://localhost:4000";
-const API_KEY = "nUN1NOc7BuiiO7iSYR7gek0bxG821Z";
-const headers = { "x-api-key": API_KEY };
+const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
 
 export default function FeedPage() {
   const [posts, setPosts] = useState([]);
@@ -20,8 +19,8 @@ export default function FeedPage() {
   const [commentsVisible, setCommentsVisible] = useState(false);
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(false);
-  const [searchInput, setSearchInput] = useState(""); // novo estado para o input
-  const [search, setSearch] = useState(""); // search agora só muda ao clicar na lupa
+  const [searchInput, setSearchInput] = useState(""); 
+  const [search, setSearch] = useState(""); 
   const [filteredData, setFilteredData] = useState([]);
   const [current, setCurrent] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -34,7 +33,7 @@ export default function FeedPage() {
     async function fetchFeed() {
       try {
         setLoading(true);
-        const postsRes = await axios.get(`${API_URL}/api/posts`, { headers });
+        const postsRes = await axios.get(`${API_URL}/api/posts`, { headers: HEADERS });
 
         const enrichedPosts = await Promise.all(
           (postsRes.data.data || []).map(async (post) => {
@@ -43,17 +42,17 @@ export default function FeedPage() {
             let comments = [];
 
             try {
-              const likesRes = await axios.get(`${API_URL}/api/posts/${post.id}/likes`, { headers });
+              const likesRes = await axios.get(`${API_URL}/api/posts/${post.id}/likes`, { headers: HEADERS });
               like_count = likesRes.data.likes ?? 0;
             } catch {}
 
             try {
-              const dislikesRes = await axios.get(`${API_URL}/api/posts/${post.id}/dislikes`, { headers });
+              const dislikesRes = await axios.get(`${API_URL}/api/posts/${post.id}/dislikes`, { headers: HEADERS });
               dislike_count = dislikesRes.data.dislikes ?? 0;
             } catch {}
 
             try {
-              const commentsRes = await axios.get(`${API_URL}/api/comments/${post.id}`, { headers });
+              const commentsRes = await axios.get(`${API_URL}/api/comments/${post.id}`, { headers: HEADERS });
               comments = Array.isArray(commentsRes.data) ? commentsRes.data : [];
             } catch {}
 
@@ -91,7 +90,7 @@ export default function FeedPage() {
     setLikeLoading((prev) => ({ ...prev, [postId]: true }));
 
     try {
-      await axios.post(`${API_URL}/api/posts/${postId}/like/${userId}`, {}, { headers });
+      await axios.post(`${API_URL}/api/posts/${postId}/like/${userId}`, {}, { headers: HEADERS });
       setPosts((prev) =>
         prev.map((p) =>
           p.id === postId ? { ...p, like_count: (parseInt(p.like_count) || 0) + 1 } : p
@@ -110,7 +109,7 @@ export default function FeedPage() {
     setLikeLoading((prev) => ({ ...prev, [postId]: true }));
 
     try {
-      await axios.post(`${API_URL}/api/posts/${postId}/unlike/${userId}`, {}, { headers });
+      await axios.post(`${API_URL}/api/posts/${postId}/unlike/${userId}`, {}, { headers: HEADERS });
       setPosts((prev) =>
         prev.map((p) =>
           p.id === postId ? { ...p, like_count: Math.max((parseInt(p.like_count) || 1) - 1, 0) } : p
@@ -128,7 +127,7 @@ export default function FeedPage() {
     setCommentsVisible(true);
     setLoadingComments(true);
     try {
-      const res = await axios.get(`${API_URL}/api/comments/${postId}`, { headers });
+      const res = await axios.get(`${API_URL}/api/comments/${postId}`, { headers: HEADERS });
       setComments(Array.isArray(res.data) ? res.data : []);
     } catch {
       setComments([]);

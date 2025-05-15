@@ -10,7 +10,7 @@ import PostCard from "../../components/PostCard";
 import CommentsModal from "../../components/CommentsModal";
 
 const API_URL = "http://localhost:4000";
-const API_KEY = "nUN1NOc7BuiiO7iSYR7gek0bxG821Z";
+const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
 
 export default function UserProfilePage() {
   const router = useRouter();
@@ -28,8 +28,8 @@ export default function UserProfilePage() {
     async function fetchData() {
       setLoading(true);
       try {
-        const userRes = await axios.get(`${API_URL}/api/users/${id}`, { headers: { "x-api-key": API_KEY } });
-        const postsRes = await axios.get(`${API_URL}/api/posts/user/${id}`, { headers: { "x-api-key": API_KEY } });
+        const userRes = await axios.get(`${API_URL}/api/users/${id}`, { headers: HEADERS });
+        const postsRes = await axios.get(`${API_URL}/api/posts/user/${id}`, { headers: HEADERS });
 
         const postsWithExtras = await Promise.all(
           postsRes.data.map(async (post) => {
@@ -38,17 +38,17 @@ export default function UserProfilePage() {
             let comments = [];
 
             try {
-              const likesRes = await axios.get(`${API_URL}/api/posts/${post.id}/likes`, { headers: { "x-api-key": API_KEY } });
+              const likesRes = await axios.get(`${API_URL}/api/posts/${post.id}/likes`, { headers: HEADERS });
               like_count = likesRes.data.likes ?? 0;
             } catch {}
 
             try {
-              const dislikesRes = await axios.get(`${API_URL}/api/posts/${post.id}/dislikes`, { headers: { "x-api-key": API_KEY } });
+              const dislikesRes = await axios.get(`${API_URL}/api/posts/${post.id}/dislikes`, { headers: HEADERS });
               dislike_count = dislikesRes.data.dislikes ?? 0;
             } catch {}
 
             try {
-              const commentsRes = await axios.get(`${API_URL}/api/comments/${post.id}`, { headers: { "x-api-key": API_KEY } });
+              const commentsRes = await axios.get(`${API_URL}/api/comments/${post.id}`, { headers: HEADERS });
               comments = Array.isArray(commentsRes.data) ? commentsRes.data : [];
             } catch {}
 
@@ -73,7 +73,7 @@ export default function UserProfilePage() {
     if (userLikes[postId] === "like") return;
     setLikeLoading((prev) => ({ ...prev, [postId]: true }));
     try {
-      await axios.post(`${API_URL}/api/posts/${postId}/like/${id}`, {}, { headers: { "x-api-key": API_KEY } });
+      await axios.post(`${API_URL}/api/posts/${postId}/like/${id}`, {}, { headers: HEADERS });
       setPosts((prev) =>
         prev.map((p) =>
           p.id === postId ? { ...p, like_count: (parseInt(p.like_count) || 0) + 1 } : p
@@ -91,7 +91,7 @@ export default function UserProfilePage() {
     if (userLikes[postId] === "unlike") return;
     setLikeLoading((prev) => ({ ...prev, [postId]: true }));
     try {
-      await axios.post(`${API_URL}/api/posts/${postId}/unlike/${id}`, {}, { headers: { "x-api-key": API_KEY } });
+      await axios.post(`${API_URL}/api/posts/${postId}/unlike/${id}`, {}, { headers: HEADERS });
       setPosts((prev) =>
         prev.map((p) =>
           p.id === postId ? { ...p, like_count: Math.max((parseInt(p.like_count) || 1) - 1, 0) } : p
@@ -110,7 +110,7 @@ export default function UserProfilePage() {
     setLoadingComments(true);
     try {
       const res = await axios.get(`${API_URL}/api/comments/${postId}`, {
-        headers: { "x-api-key": API_KEY },
+        headers: HEADERS,
       });
       setComments(Array.isArray(res.data) ? res.data : []);
     } catch {
