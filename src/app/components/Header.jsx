@@ -32,8 +32,7 @@ export default function Header() {
           <FaHome />
         </Link>
         <Link href="/destaques">Destaques</Link>
-        <Link href="/casos-recentes">Casos Recentes</Link>
-        <Link href="/casos-antigos">Casos Antigos</Link>
+        <Link href="/casos-criminais">Casos Criminais</Link>
         <Link href="/videos">Vídeos</Link>
         <Link href="/podcasts">Podcasts</Link>
         <Link href="/quiz">Quiz</Link>
