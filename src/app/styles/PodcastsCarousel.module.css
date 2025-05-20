@@ -1,75 +1,80 @@
-.wrapper {
-  padding: 3rem 8rem;
-  background-color: #fff;
+.carouselContainer {
+  overflow-x: auto;
+  padding: 0 16px 24px 16px;
 }
 
-.title {
-  font-size: 2rem;
-  color: #1f2937;
-  font-weight: 600;
-  margin-bottom: 2rem;
-  text-align: center;
+.carouselTrack {
+  display: flex;
+  gap: 20px;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
 }
 
-.carousel {
-  border-radius: 20px;
-}
-
-.card {
+.podcastCard {
+  min-width: 300px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 16px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-  background: #f3f4f6;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  height: 100%;
-  text-align: center;
+  gap: 12px;
+  transition: transform 0.3s ease;
 }
 
-.image {
+.podcastCard:hover {
+  transform: scale(1.05);
+}
+
+.podcastImage {
   width: 100%;
-  max-height: 240px;
+  height: 160px;
   object-fit: cover;
   border-radius: 12px;
-  margin-bottom: 1rem;
+  background-color: #eee;
 }
 
-.content {
-  padding: 0 1rem;
+.podcastInfo {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .podcastTitle {
   font-size: 1.25rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+.podcastDescription {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.3;
+  flex-grow: 1;
+}
+
+.podcastLink {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+.podcastLink:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: red;
   font-weight: bold;
-  color: #111827;
-  margin-bottom: 0.5rem;
+  padding: 20px;
 }
 
-.description {
-  font-size: 1rem;
-  color: #4b5563;
-}
-
-.titulo {
-  font-size: 2.3rem;
-  color: #111827;
-  font-weight: bold;
-  margin: 4rem auto 3rem auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; 
-  justify-content: flex-start;
-  padding-bottom: 0.5rem;
-  position: relative;
-}
-
-.titulo::after {
-  content: "";
-  display: block;
-  margin: 1rem 0 0 0; 
-  width: 20rem;
-  height: 4px;
-  background: #030033;
-  border-radius: 2px;
+.aviso {
+  color: #666;
+  font-style: italic;
+  padding: 20px;
 }

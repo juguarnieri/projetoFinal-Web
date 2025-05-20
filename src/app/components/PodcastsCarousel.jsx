@@ -1,50 +1,66 @@
-"use client";
+'use client';
 
-import { Carousel, Skeleton } from "antd";
-import styles from "../styles/PodcastsCarousel.module.css";
+import { useEffect, useState } from 'react';
+import styles from '../styles/PodcastsCarousel.module.css';
 
-export default function PodcastsCarousel({ podcasts, loading }) {
+export default function PodcastCarousel() {
+  const [podcasts, setPodcasts] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchPodcasts() {
+      try {
+        const res = await fetch('http://localhost:4000/api/podcasts');
+        const json = await res.json();
+
+        console.log('Dados recebidos da API:', json);
+
+        if (Array.isArray(json.data)) {
+          setPodcasts(json.data);
+        } else {
+          setError('Formato de resposta inesperado.');
+        }
+      } catch (err) {
+        setError('Erro ao buscar podcasts: ' + err.message);
+      }
+    }
+
+    fetchPodcasts();
+  }, []);
+
+  if (error) {
+    return <p className={styles.error}>{error}</p>;
+  }
+
+  if (podcasts.length === 0) {
+    return <p className={styles.aviso}>Nenhum podcast encontrado.</p>;
+  }
+
   return (
-    <div className={styles.wrapper}>
-             <div className={styles.titulo}>
-        <span>Top Podcasts</span>
-      </div>
-      {loading ? (
-        <Skeleton active />
-      ) : (
-        <Carousel
-          dots={false}
-          infinite
-          autoplay
-          autoplaySpeed={5000}
-          className={styles.carousel}
-        >
-          {podcasts.map((podcast) => {
-            // Monta a URL da imagem conforme o backend
-            const imageUrl = podcast.image?.startsWith("http")
-              ? podcast.image
-              : `${process.env.NEXT_PUBLIC_API_URL}/uploads/${podcast.image}`;
-            return (
-              <div
-                key={podcast.id}
-                className={styles.card}
-                onClick={() => window.open(podcast.link, "_blank")}
-                style={{ cursor: "pointer" }}
+    <div className={styles.carouselContainer}>
+      <div className={styles.carouselTrack}>
+        {podcasts.map((podcast) => (
+          <div key={podcast.id} className={styles.podcastCard}>
+            <img src={podcast.image} alt={podcast.title} className={styles.podcastImage} />
+            <div className={styles.podcastInfo}>
+              <h2 className={styles.podcastTitle}>{podcast.title}</h2>
+              <p className={styles.podcastDescription}>{podcast.description}</p>
+              <p><strong>Categoria:</strong> {podcast.category}</p>
+              <p><strong>Visualizações:</strong> {podcast.views}</p>
+              <p><strong>Destaque:</strong> {podcast.is_featured ? 'Sim' : 'Não'}</p>
+              <a
+                href={podcast.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.podcastLink}
               >
-                <img
-                  src={imageUrl || "https://via.placeholder.com/400x200?text=Sem+Imagem"}
-                  alt={podcast.title}
-                  className={styles.image}
-                />
-                <div className={styles.content}>
-                  <h3 className={styles.podcastTitle}>{podcast.title}</h3>
-                  <p className={styles.description}>{podcast.description}</p>
-                </div>
-              </div>
-            );
-          })}
-        </Carousel>
-      )}
+                Ouvir podcast
+              </a>
+              <p><small>Criado em: {new Date(podcast.created_at).toLocaleDateString()}</small></p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
