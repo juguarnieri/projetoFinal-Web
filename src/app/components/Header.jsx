@@ -39,7 +39,6 @@ export default function Header() {
         <Link href="/feed">Feed</Link>
         <Link href="/users">Users</Link>
         <Link href="/sobre">Sobre</Link>
-        <Link href="/contato">Contato</Link>
         <FaSearch
           className={styles.searchIcon}
           onClick={() => setShowSearch((v) => !v)}

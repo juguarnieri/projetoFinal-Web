@@ -10,3 +10,8 @@ html, body {
   padding: 0;
   box-sizing: border-box;
 }
+
+.homeBgBody {
+  background: url('/images/bg-home.png') no-repeat center center fixed;
+  background-size: cover;
+}

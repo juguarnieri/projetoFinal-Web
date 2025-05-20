@@ -1,5 +1,123 @@
 .container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3rem 1.5rem;
+  min-height: auto;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.92); /* leve transparência para destacar o conteúdo */
+  border-radius: 18px;
+  position: relative;
+  margin-bottom: 3rem;
+  z-index: 1;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.heading {
+  font-size: 2.2rem;
+  color: #030033;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  letter-spacing: -1px;
+}
+
+.paragraph {
+  font-size: 1.15rem;
+  color: #444;
+  line-height: 1.7;
+  max-width: 700px;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  margin: 2.5rem 0;
+}
+
+.image {
+  border-radius: 16px;
+  box-shadow: 0 4px 24px #03003322;
+  max-width: 100%;
+  height: auto;
+  
+}
+
+.contactSection {
+  background: #f8fafc;
+  border-radius: 12px;
   padding: 2rem;
-  background-color: #f4f4f4;
-  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  box-shadow: 0 2px 12px #03003311;
+}
+
+.contactSection h3 {
+  color: #b41a1a; 
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.contactSection p {
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contactForm input,
+.contactForm textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background: #f5f7fa;
+  transition: border 0.2s;
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+  border: 1.5px solid #b41a1a; /* vermelho */
+  outline: none;
+}
+
+.contactForm button[type="submit"] {
+  background: linear-gradient(90deg, #b41a1a 60%, #720505e3 100%); /* vermelho */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 8px;
+  box-shadow: 0 2px 8px #e11d4822;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.contactForm button[type="submit"]:hover {
+  background: linear-gradient(90deg, #d44343 60%, #cf2222 100%);
+  box-shadow: 0 4px 12px #e11d4833;
+}
+
+.flexRow {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 2.5rem 0;
+}
+
+@media (max-width: 900px) {
+  .flexRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
 }
