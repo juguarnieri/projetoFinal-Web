@@ -1,71 +1,79 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Skeleton, message } from "antd";
 import styles from "./Sobre.module.css";
 
-const API_URL = "http://localhost:4000"; // Certifique-se de que o backend está rodando nesta URL
-const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY }; // Certifique-se de que a variável está configurada corretamente
+const API_URL = "http://localhost:4000";
+const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
 
 export default function SobrePage() {
-  const [aboutData, setAboutData] = useState(null);
   const [teamMembers, setTeamMembers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    async function fetchAboutData() {
+    async function fetchTeamMembers() {
       try {
-        setLoading(true);
-
-        // Fazendo as requisições para os dados da página e da equipe
-        const [aboutRes, teamRes] = await Promise.all([
-          axios.get(`${API_URL}/api/about`, { headers: HEADERS }),
-          axios.get(`${API_URL}/api/team-members`, { headers: HEADERS }),
-        ]);
-
-        setAboutData(aboutRes.data);
-        setTeamMembers(teamRes.data);
+        const response = await axios.get(`${API_URL}/api/about/team`, { headers: HEADERS });
+        setTeamMembers(response.data?.data || []);
       } catch (err) {
-        console.error("Erro ao carregar dados:", err);
-        message.error("Erro ao carregar dados da página Sobre. Verifique sua conexão com o backend.");
-      } finally {
-        setLoading(false);
+        console.error("Erro ao carregar membros da equipe:", err);
       }
     }
 
-    fetchAboutData();
+    fetchTeamMembers();
   }, []);
 
-  if (loading) return <Skeleton active />;
+  const handleNext = () => {
+    if (currentIndex < teamMembers.length - 3) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
 
-  if (!aboutData) {
-    return <p>Erro ao carregar dados da página. Tente novamente mais tarde.</p>;
-  }
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
 
   return (
     <div className={styles.sobreWrapper}>
-      <h2>{aboutData.main_title}</h2>
-      <div className={styles.sobreContent}>
-        <section className={styles.sobreLeft}>
-          <h3>{aboutData.subtitle}</h3>
-          <p>{aboutData.description}</p>
-          <h4>{aboutData.commitment_title}</h4>
-          <p>{aboutData.commitment_text}</p>
-        </section>
-        <section className={styles.sobreRight}>
-          <h3>Equipe</h3>
-          {teamMembers.map((member) => (
-            <div key={member.id} className={styles.teamCard}>
-              <img src={member.photo_url} alt={member.name} className={styles.teamPhoto} />
-              <div className={styles.teamInfo}>
-                <h4>{member.name}</h4>
-                <p>{member.role}</p>
+      <section className={styles.aboutSection}>
+        <h1>Sobre Nós</h1>
+        <p>
+        Crime Whispers é um site dedicado a compartilhar histórias reais de crimes que marcaram diferentes épocas, tanto no Brasil quanto ao redor do mundo. Com uma abordagem cuidadosa e informativa, buscamos oferecer aos nossos leitores análises detalhadas e informações precisas sobre os casos mais fascinantes e intrigantes.
+        
+        Nosso objetivo é ir além dos relatos tradicionais, explorando o contexto histórico, social e cultural em que os crimes ocorreram, proporcionando uma experiência rica e reflexiva para todos os interessados no tema.
+        </p>
+      </section>
+      <section className={styles.teamSection}>
+        <div className={styles.carouselWrapper}>
+          <button className={`${styles.carouselButton} ${styles.left}`} onClick={handlePrev}>
+            &#8249;
+          </button>
+          <div
+            className={styles.carousel}
+            style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}
+          >
+            {teamMembers.map((member) => (
+              <div key={member.id} className={styles.teamCard}>
+                <img
+                  src={member.photo_url}
+                  alt={member.name}
+                  className={styles.teamPhoto}
+                />
+                <div className={styles.teamInfo}>
+                  <h4>{member.name}</h4>
+                  <p>{member.role}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </section>
-      </div>
+            ))}
+          </div>
+          <button className={`${styles.carouselButton} ${styles.right}`} onClick={handleNext}>
+            &#8250;
+          </button>
+        </div>
+      </section>
     </div>
   );
 }
