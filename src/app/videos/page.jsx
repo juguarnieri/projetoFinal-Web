@@ -26,7 +26,7 @@ export default function VideosPage() {
     async function fetchVideos() {
         try {
             setLoading(true);
-            const videosRes = await axios.get(`${API_URL}/api/videos`, { headers: HEADERS });
+            const videosRes = await axios.get(`${API_URL}/videos`, { headers: HEADERS });
             setVideos(videosRes.data.data);
         } catch (err) {
             message.error("Erro ao carregar vídeos.");
