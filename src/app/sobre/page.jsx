@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Sobre.module.css";
+import Banner from "../components/Banner";
 
 const API_URL = "http://localhost:4000";
 const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
@@ -37,14 +38,31 @@ export default function SobrePage() {
   };
 
   return (
+    <div>
+
+
+      <Banner title="SOBRE NÓS" image="/images/image.png" />
+
     <div className={styles.sobreWrapper}>
       <section className={styles.aboutSection}>
-        <h1>Sobre Nós</h1>
+
+        <h1>Um pouco sobre nossa equipe:</h1>
         <p>
-        Crime Whispers é um site dedicado a compartilhar histórias reais de crimes que marcaram diferentes épocas, tanto no Brasil quanto ao redor do mundo. Com uma abordagem cuidadosa e informativa, buscamos oferecer aos nossos leitores análises detalhadas e informações precisas sobre os casos mais fascinantes e intrigantes.
-        
-        Nosso objetivo é ir além dos relatos tradicionais, explorando o contexto histórico, social e cultural em que os crimes ocorreram, proporcionando uma experiência rica e reflexiva para todos os interessados no tema.
+        Crime Whispers é um espaço dedicado a contar histórias reais de crimes, com precisão, respeito e compromisso com a verdade. Nosso objetivo é levar aos leitores um conteúdo informativo, sensível e responsável, explorando casos do Brasil e do mundo que marcaram a sociedade e continuam a despertar interesse e reflexão.
+
+       Com uma abordagem investigativa e cuidadosa, oferecemos relatos detalhados sobre os crimes, as investigações, os julgamentos e os desdobramentos mais relevantes. Buscamos ir além dos fatos, contextualizando cada caso em seu cenário social, político e cultural, para que nossos leitores compreendam a complexidade por trás dos acontecimentos.
+
+      Nosso conteúdo é atualizado regularmente, com cobertura de casos recentes, investigações em andamento e revisitações a crimes que já foram solucionados, mas que ainda levantam dúvidas e reflexões. Trabalhamos com uma linguagem clara e acessível, sempre pautada na ética jornalística e no respeito às vítimas, aos familiares e aos envolvidos.
         </p>
+        <h1>O que nos guia:</h1>
+        <p><span>Jornalismo investigativo –</span> Utilizamos fontes confiáveis, dados públicos e reportagens apuradas para garantir informações corretas e bem embasadas.</p>
+
+        <p><span>Responsabilidade e ética –</span> Tratamos cada história com empatia, evitando a exploração sensacionalista e valorizando a dignidade humana.</p>
+
+        <p><span>Conteúdo impactante e relevante –</span> Apresentamos histórias que provocam reflexão, revelam realidades ocultas e mostram o lado mais complexo da natureza humana.</p>
+
+       <p><span>Acesso à informação –</span> Acreditamos que o conhecimento é uma ferramenta poderosa e, por isso, democratizamos o acesso a informações sobre crimes reais, sempre com responsabilidade.</p>
+       
       </section>
       <section className={styles.teamSection}>
         <div className={styles.carouselWrapper}>
@@ -74,6 +92,7 @@ export default function SobrePage() {
           </button>
         </div>
       </section>
+      </div>
     </div>
   );
 }
