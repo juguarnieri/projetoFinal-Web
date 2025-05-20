@@ -6,6 +6,7 @@ import Head from "next/head";
 import { ToastContainer, toast } from "react-toastify";
 import Banner from "../components/Banner";
 import VideosSection from "../components/VideosSection";
+import styles from "./Video.module.css";
 
 const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
 
@@ -31,12 +32,13 @@ export default function VideosPage() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       <Head>
         <title>Vídeos</title>
       </Head>
-
-      <Banner title="VÍDEOS" image="/images/image.png" />
+    <div className={styles.banner}>
+      <Banner title="VÍDEOS" image="/images/image-videos.png" />
+    </div>
 
       <VideosSection
         videos={videos}
