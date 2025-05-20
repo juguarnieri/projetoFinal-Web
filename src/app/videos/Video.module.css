@@ -1,0 +1,91 @@
+.videosWrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+.videosHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.videosSearchGroup {
+    display: flex;
+    align-items: center;
+}
+
+.videosSearchInput {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 300px;
+}
+
+.videosSearchButton {
+    margin-left: 8px;
+    background-color: #1677ff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+}
+
+.videosClearButton {
+    margin-left: 12px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    background-color: #1677ff;
+    color: #fff;
+}
+
+.videosPagination {
+    margin: 32px 0 16px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+.videosPagination button {
+    background: #1677ff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.videosPagination button:disabled {
+    background: #b3c6ff;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+.videosPagination span {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+
+@media (max-width: 768px) {
+    .videosWrapper {
+        padding: 0 10px;
+    }
+
+    .videosWrapper h2 {
+        font-size: 26px;
+    }
+
+    .videosWrapper p {
+        font-size: 16px;
+    }
+}
