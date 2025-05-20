@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #050d48, #171a4a); /* Cor de fundo com gradiente */
+  background-color: rgba(255, 255, 255, 0.1);
   padding: 0 50px;
 
 }
@@ -14,20 +14,25 @@
 }
 
 .aboutSection h1 {
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #ffffff;
+  color: #000;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  font-family: 'poppins', sans-serif;
+}
+.aboutSection p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #000;
+  text-align: justify;
+  width: 90%;
+  font-family: 'arial', sans-serif;
 }
 
-.aboutSection p {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin-bottom: 3rem;
-  color: #dcdcdc;
-  
+.aboutSection span {
+  font-weight: bold;
 }
 
 .teamSection {
@@ -51,14 +56,14 @@
 .teamCard {
   flex: 0 0 calc(33.33% - 20px); /* 3 cards por vez */
   margin: 0 10px;
-  background: rgba(255, 255, 255, 0.1);
+  background-color: #030033;
   border-radius: 1rem;
   padding: 20px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, box-shadow 0.3s;
-  height: 30rem; /* Maior comprimento */
-  width: 2rem; /* Menor largura */
+  height: 30rem; 
+  width: 2rem; 
 }
 
 .teamCard:hover {
