@@ -40,8 +40,7 @@ export default function SobrePage() {
   return (
     <div>
 
-
-      <Banner title="SOBRE NÓS" image="/images/image.png" />
+      <Banner title="SOBRE NÓS" image="/images/images.jpg" />
 
     <div className={styles.sobreWrapper}>
       <section className={styles.aboutSection}>
