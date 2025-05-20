@@ -1,54 +1,50 @@
-'use client';
+"use client";
 
+import { Carousel, Skeleton } from "antd";
+import styles from "../styles/PodcastsCarousel.module.css";
 
-import { useEffect, useState } from 'react';
-import styles from '../styles/PodcastsCarousel.module.css';
-
-
-export default function PodcastCarousel() {
-  const [podcasts, setPodcasts] = useState([]);
-  const [erro, setErro] = useState('');
-
-
-  useEffect(() => {
-    fetch('http://localhost:4000/api/podcasts', {
-      headers: {
-        'x-api-key': 'nUN1NOc7BuiiO7iSYR7gek0bxG821Z'
-      }
-    })
-      .then(res => res.json())
-      .then(json => {
-        if (Array.isArray(json.data)) {
-          setPodcasts(json.data);
-        } else {
-          setErro('Nenhum podcast encontrado.');
-        }
-      })
-      .catch(() => {
-        setErro('Erro ao carregar podcasts.');
-      });
-  }, []);
-
-
-  if (erro) return <p>{erro}</p>;
-  if (podcasts.length === 0) return <p>Carregando podcasts...</p>;
-
-
+export default function PodcastsCarousel({ podcasts, loading }) {
   return (
-    <div className={styles.carousel}>
-      {podcasts.map(podcast => (
-        <div key={podcast.id} className={styles.card}>
-          <img src={podcast.image} alt={podcast.title} className={styles.imagem} />
-          <h3>{podcast.title}</h3>
-          <p>{podcast.description}</p>
-          <p>Categoria: {podcast.category}</p>
-          <p>Visualizações: {podcast.views}</p>
-          <p>Destaque: {podcast.is_featured ? 'Sim' : 'Não'}</p>
-          <a href={podcast.link} target="_blank" rel="noreferrer">Ouvir</a>
-        </div>
-      ))}
-    </div>
+    <div className={styles.wrapper}>
+             <div className={styles.titulo}>
+        <span>Top Podcasts</span>
+      </div>
+      {loading ? (
+        <Skeleton active />
+      ) : (
+        <Carousel
+          dots={false}
+          infinite
+          autoplay
+          autoplaySpeed={5000}
+          className={styles.carousel}
+        >
+          {podcasts.map((podcast) => {
+            // Monta a URL da imagem conforme o backend
+            const imageUrl = podcast.image?.startsWith("http")
+              ? podcast.image
+              : `${process.env.NEXT_PUBLIC_API_URL}/uploads/${podcast.image}`;
+            return (
+              <div
+                key={podcast.id}
+                className={styles.card}
+                onClick={() => window.open(podcast.link, "_blank")}
+                style={{ cursor: "pointer" }}
+                 >
+                <img
+                  src={imageUrl || "https://via.placeholder.com/400x200?text=Sem+Imagem"}
+                  alt={podcast.title}
+                  className={styles.image}
+                />
+                <div className={styles.content}>
+                  <h3 className={styles.podcastTitle}>{podcast.title}</h3>
+                  <p className={styles.description}>{podcast.description}</p>
+                </div>
+              </div>
+            );
+          })}
+        </Carousel>
+      )}
+       </div>
   );
 }
-
-

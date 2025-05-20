@@ -7,7 +7,7 @@ import { Skeleton, Modal } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import Banner from "../components/Banner";
 import NoticiasSection from "../components/NoticiasSection";
-import PodcastsCarousel from "../components/PodcastsCarousel";
+import PodcastsCarousel from "../components/PodcastsCaurosel";
 import VideosSection from "../components/VideosSection";
 
 const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };

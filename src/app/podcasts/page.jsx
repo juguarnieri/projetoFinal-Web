@@ -1,11 +1,10 @@
-import PodcastCarousel from '../components/PodcastsCaurosel';
+import Podcasts from '../components/Podcasts';
 
 
 export default function PodcastsPage() {
   return (
     <div>
-      <h2>Lista de Podcasts</h2>
-      <PodcastCarousel />
+      <Podcasts />
     </div>
   );
 }
