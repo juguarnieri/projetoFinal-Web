@@ -1,0 +1,86 @@
+.titulo-pagina {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 24px 16px;
+  color: #222;
+}
+
+.error {
+  color: red;
+  padding: 16px;
+  font-weight: bold;
+}
+
+.aviso {
+  padding: 16px;
+  font-style: italic;
+  color: #555;
+}
+
+.carousel-container {
+  overflow-x: auto;
+  padding: 0 16px 24px 16px;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  scroll-behavior: smooth;
+}
+
+.podcast-card {
+  min-width: 300px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 16px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.3s ease;
+}
+
+.podcast-card:hover {
+  transform: scale(1.05);
+}
+
+.podcast-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  background-color: #eee;
+}
+
+.podcast-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.podcast-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+.podcast-description {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.3;
+  flex-grow: 1;
+}
+
+.podcast-link {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+.podcast-link:hover {
+  text-decoration: underline;
+}
