@@ -1,13 +1,14 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Head from "next/head";
-import { Skeleton, Modal } from "antd";
-import { ToastContainer, toast } from "react-toastify";
-import Banner from "../components/Banner";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Head from 'next/head';
+import { Skeleton, Modal } from 'antd';
+import { ToastContainer, toast } from 'react-toastify';
+import Banner from '../components/Banner';
+import CardDecada from '../components/CardDecada';
 
-const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
+const HEADERS = { 'x-api-key': process.env.NEXT_PUBLIC_API_KEY };
 
 export default function CasosCriminais() {
     const [casos, setCasos] = useState([]);
@@ -18,11 +19,12 @@ export default function CasosCriminais() {
         const fetchCasos = async () => {
             try {
                 const response = await axios.get(
-                    `${process.env.NEXT_PUBLIC_API_URL}/api/news/featured`,{ headers: HEADERS }
-                );
+                `${process.env.NEXT_PUBLIC_API_URL}/news/featured`,
+                { headers: HEADERS }
+            );
                 setCasos(response.data.data || []);
             } catch (error) {
-                toast.error("Erro ao carregar casos criminais");
+                toast.error('Erro ao carregar casos criminais');
                 console.error(error);
             } finally {
                 setLoading(false);
@@ -38,25 +40,18 @@ export default function CasosCriminais() {
                 <title>Casos Criminais</title>
             </Head>
 
-            <Banner
-                title="CASOS CRIMINAIS"
-                image="/images/image-casos.png"
-            />
+            <Banner title="CASOS CRIMINAIS" image="/images/image-casos.png" />
 
-            <div className="casos-container">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px', padding: '16px' }}>
                 {loading ? (
                     <Skeleton active />
                 ) : (
                     casos.map((caso) => (
-                        <div
+                        <CardDecada
                             key={caso.id}
-                            className="caso-card"
+                            caso={caso}
                             onClick={() => setModalInfo({ visible: true, caso })}
-                        >
-                            <img src={caso.image} alt={caso.title} />
-                            <h3>{caso.title}</h3>
-                            <p>{caso.description}</p>
-                        </div>
+                        />
                     ))
                 )}
             </div>
