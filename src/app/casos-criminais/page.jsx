@@ -1,90 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Head from "next/head";
-import { Skeleton, Modal } from "antd";
-import { ToastContainer, toast } from "react-toastify";
 import Banner from "../components/Banner";
-
-const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
+import DecadeCard from "../components/DecadeCard";
+import styles from "./CasosCriminais.module.css";
+import Link from "next/link";
+import React from "react";
 
 export default function CasosCriminais() {
-    const [casos, setCasos] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [modalInfo, setModalInfo] = useState({ visible: false, caso: null });
+  return (
+    <div>
+    <div className={styles.container}>
+      <Banner title="CASOS CRIMINAIS" image="/images/image-casos.png" />
+      <DecadeCard image="/images/image-videos.png" text="Década de 1970" />
+      <Link href="/noticia80" className={styles.noUnderline}>
+      <DecadeCard image="/images/image.png" text="Década de 1980" />
+      </Link>
+      <DecadeCard image="/images/image-casos.png" text="Década de 1990" />
+    </div>
 
-    useEffect(() => {
-        const fetchCasos = async () => {
-            try {
-                const response = await axios.get(
-                    `${process.env.NEXT_PUBLIC_API_URL}/api/news/featured`,{ headers: HEADERS }
-                );
-                setCasos(response.data.data || []);
-            } catch (error) {
-                toast.error("Erro ao carregar casos criminais");
-                console.error(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchCasos();
-    }, []);
-
-    return (
-        <div>
-            <Head>
-                <title>Casos Criminais</title>
-            </Head>
-
-            <Banner
-                title="CASOS CRIMINAIS"
-                image="/images/image-casos.png"
-            />
-
-            <div className="casos-container">
-                {loading ? (
-                    <Skeleton active />
-                ) : (
-                    casos.map((caso) => (
-                        <div
-                            key={caso.id}
-                            className="caso-card"
-                            onClick={() => setModalInfo({ visible: true, caso })}
-                        >
-                            <img src={caso.image} alt={caso.title} />
-                            <h3>{caso.title}</h3>
-                            <p>{caso.description}</p>
-                        </div>
-                    ))
-                )}
-            </div>
-
-            <Modal
-                title={modalInfo.caso?.title}
-                open={modalInfo.visible}
-                onCancel={() => setModalInfo({ visible: false, caso: null })}
-                footer={null}
-                width={600}
-            >
-                {modalInfo.caso ? (
-                    <div>
-                        <p>{modalInfo.caso.text}</p>
-                        <a
-                            href={modalInfo.caso.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Ler mais
-                        </a>
-                    </div>
-                ) : (
-                    <Skeleton active />
-                )}
-            </Modal>
-
-            <ToastContainer position="top-right" autoClose={4500} />
-        </div>
-    );
+    <div className={styles.container}>
+      <DecadeCard image="/images/images.jpg" text="Década de 2010" />
+      <DecadeCard image="/images/crime.png" text="Década de 2020" />
+      <DecadeCard image="/images/bg-home.png" text="Década de 2000" />
+    </div>
+    </div>
+  );
 }
