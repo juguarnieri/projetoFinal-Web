@@ -7,7 +7,7 @@ import styles from "./Noticia2010.module.css";
 export default function Casos2010() {
   return (
     <div className={styles.container}>
-      <Banner title="CASOS CRIMINAIS DOS ANOS 2010" image="/images/image-casos.png" />
+      <Banner title="CASOS CRIMINAIS DOS ANOS 2010" image="/images/crime.png" />
     </div>
 
   );
