@@ -15,11 +15,14 @@ export default function CasosCriminais() {
       <Link href="/noticia80" className={styles.noUnderline}>
       <DecadeCard image="/images/image.png" text="Década de 1980" />
       </Link>
-      <DecadeCard image="/images/image-casos.png" text="Década de 1990" />
     </div>
 
     <div className={styles.container}>
+      <DecadeCard image="/images/image-casos.png" text="Década de 1990" />
       <DecadeCard image="/images/images.jpg" text="Década de 2010" />
+    </div>
+
+    <div className={styles.container}>
       <DecadeCard image="/images/crime.png" text="Década de 2020" />
       <DecadeCard image="/images/bg-home.png" text="Década de 2000" />
     </div>
