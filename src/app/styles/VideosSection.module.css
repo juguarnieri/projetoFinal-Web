@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap');
 .titulo {
   font-size: 2.3rem;
   color: #111827;
   font-weight: bold;
   margin: 4rem 0 3rem;
   text-align: left;
+    font-family: 'Sanchez', serif;
   position: relative;
 }
 
@@ -13,6 +15,7 @@
   margin-top: 1rem; 
   width: 20rem;
   height: 4px;
+    font-family: 'Sanchez', serif;
   background: #030033;
   border-radius: 2px;
 }

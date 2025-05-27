@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
 .titulo {
   font-size: 2.3rem;
   color: #111827;
   font-weight: bold;
   margin: 4rem 0 3rem 5rem; 
   flex-direction: column;
+  font-family: 'League Spartan', 'Montserrat', 'Segoe UI', Arial, sans-serif;
   align-items: flex-start; 
   justify-content: flex-start;
   padding-bottom: 0.5rem;

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
 .header {
   background-color: #030033;
   color: white;
@@ -8,6 +9,7 @@
   top: 0;
   position: relative;
   min-height: 160px; 
+   font-family: 'League Spartan', 'Montserrat', 'Segoe UI', Arial, sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
