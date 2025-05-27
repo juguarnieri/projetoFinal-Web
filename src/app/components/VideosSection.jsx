@@ -8,7 +8,20 @@ function getYoutubeThumb(url) {
   return match ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : "";
 }
 
+function groupByCategory(videos) {
+  return videos.reduce((acc, video) => {
+    const category = video.category || "Sem categoria";
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(video);
+    return acc;
+  }, {});
+}
+
 export default function VideosSection({ videos, loading }) {
+  const videosByCategory = groupByCategory(videos);
+
   return (
     <div className={styles.section}>
        <div className={styles.titulo}>
@@ -17,14 +30,17 @@ export default function VideosSection({ videos, loading }) {
       {loading ? (
         <Skeleton active />
       ) : (
-        <div className={styles.grid}>
-          {videos.map((video) => (
-            <div
-              key={video.id}
-              className={styles.card}
-              onClick={() => window.open(video.link, "_blank")}
-              style={{ cursor: "pointer" }}
-            >
+        Object.entries(videosByCategory).map(([category, videos]) => (
+          <div key={category} className={styles.categorySection}>
+            <h2 className={styles.categoryTitle}>{category.toUpperCase()}</h2>
+            <div className={styles.grid}>
+            {videos.map((video) => (
+              <div
+                key={video.id}
+                className={styles.card}
+                onClick={() => window.open(video.link, "_blank")}
+                style={{ cursor: "pointer" }}
+              >
               <div className={styles.videoWrapper}>
                 <img
                   src={
@@ -45,6 +61,8 @@ export default function VideosSection({ videos, loading }) {
             </div>
           ))}
         </div>
+      </div>
+        ))
       )}
     </div>
   );
