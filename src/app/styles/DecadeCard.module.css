@@ -1,0 +1,14 @@
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+.description {
+    font-size: 3rem;
+    color: #676;
+}

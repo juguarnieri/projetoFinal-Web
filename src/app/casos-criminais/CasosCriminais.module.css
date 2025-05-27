@@ -1,32 +1,12 @@
-.casos-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6rem;
+    padding: 32px 0;
 }
 
-.caso-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-}
-
-.caso-card img {
-    width: 100%;
-    height: auto;
-}
-
-.caso-card h3 {
-    margin: 10px 0;
-    font-size: 1.2rem;
-}
-
-.caso-card p {
-    padding: 0 10px;
-    font-size: 0.9rem;
-    color: #555;
+.noUnderline {
+    text-decoration: none;
 }
