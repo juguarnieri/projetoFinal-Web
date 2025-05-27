@@ -6,6 +6,7 @@ import styles from '../podcasts/Podcast.module.css';
 export default function Podcasts() {
   const [podcasts, setPodcasts] = useState([]);
   const [erro, setErro] = useState('');
+  const [tituloFiltro, setTituloFiltro] = useState('');
 
   useEffect(() => {
     fetch('http://localhost:4000/api/podcasts', {
@@ -15,11 +16,11 @@ export default function Podcasts() {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json); // Verifica os dados recebidos
+        console.log(json); 
 
         if (Array.isArray(json.data)) {
-          const ativos = json.data.filter((podcast) => podcast.is_featured); // Filtra apenas os destacados
-          const semDuplicatas = [...new Map(ativos.map((podcast) => [podcast.id, podcast])).values()]; // Remove duplicados
+          const ativos = json.data.filter((podcast) => podcast.is_featured);
+          const semDuplicatas = [...new Map(ativos.map((podcast) => [podcast.id, podcast])).values()]; 
           setPodcasts(semDuplicatas);
         } else {
           setErro('Nenhum podcast ativo encontrado.');
@@ -42,12 +43,26 @@ export default function Podcasts() {
         <h1 className={styles.titulo}>Podcast</h1>
       </div>
 
+      <div className={styles.filtro}>
+        <input
+          type="text"
+          placeholder="Buscar por título..."
+          value={tituloFiltro}
+          onChange={(e) => setTituloFiltro(e.target.value)}
+          className={styles.input}
+        />
+      </div>
+
       {categorias.map((categoria) => (
         <div key={categoria} className={styles.categoria}>
           <h2>{categoria}</h2>
           <div className={styles.carousel}>
             {podcasts
-              .filter((podcast) => podcast.category === categoria)
+              .filter(
+                (podcast) =>
+                  podcast.category === categoria &&
+                  podcast.title.toLowerCase().includes(tituloFiltro.toLowerCase()) 
+              )
               .map((podcast) => (
                 <div key={podcast.id} className={styles.card} onClick={() => window.open(podcast.link, '_blank')}>
                   <img src={podcast.image} alt={podcast.title} className={styles.imagem} />
