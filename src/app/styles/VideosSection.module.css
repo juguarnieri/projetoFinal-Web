@@ -17,6 +17,14 @@
   gap: 2rem;
 }
 
+.card {
+  height: 100%; 
+}
+
+.videoWrapper {
+  position: relative;
+}
+
 .categorySection {
   margin-bottom: 4rem;
 }
