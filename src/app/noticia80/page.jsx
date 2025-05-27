@@ -7,7 +7,7 @@ import styles from "./Noticia80.module.css";
 export default function Casos80() {
   return (
     <div className={styles.container}>
-      <Banner title="CASOS CRIMINAIS DOS ANOS 80" image="/images/image.png" />
+      <Banner title="Década de 1980" image="/images/image.png" />
     </div>
 
   );
