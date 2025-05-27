@@ -1,6 +1,12 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { Roboto } from "next/font/google"
 import "./styles/globals.css";
+
+const font = Roboto({
+  variable: "--font",
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: "Meu App",
