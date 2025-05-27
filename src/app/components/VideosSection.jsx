@@ -23,7 +23,7 @@ export default function VideosSection({ videos, loading }) {
   const videosByCategory = groupByCategory(videos);
 
   return (
-    <div className={styles.section}>
+    <div className={styles.wrapper}>
        <div className={styles.titulo}>
         <span>Vídeos Virais</span>
       </div>

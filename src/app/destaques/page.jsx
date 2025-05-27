@@ -24,30 +24,31 @@ export default function NewsDoDia() {
 
   const [modalInfo, setModalInfo] = useState({ visible: false, noticia: null });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [newsRes, podcastRes, videoRes] = await Promise.all([
-          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/news/featured`, { headers: HEADERS }),
-          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/podcasts/featured`, { headers: HEADERS }),
-          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/videos/featured`, { headers: HEADERS })
-        ]);
 
-        setNoticias(newsRes.data.data || []);
-        setPodcasts(podcastRes.data.data || []);
-        setVideos(videoRes.data.data || []);
-      } catch (error) {
-        toast.error("Erro ao carregar dados");
-        console.error(error);
-      } finally {
-        setLoadingNoticias(false);
-        setLoadingPodcasts(false);
-        setLoadingVideos(false);
-      }
-    };
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const [newsRes, podcastRes, videoRes] = await Promise.all([
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/news/featured`, { headers: HEADERS }),
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/podcasts/featured`, { headers: HEADERS }),
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/videos/featured`, { headers: HEADERS })
+      ]);
 
-    fetchData();
-  }, []);
+      setNoticias(newsRes.data.data || []);
+      setPodcasts(podcastRes.data.data || []);
+      setVideos(videoRes.data.data || []);
+    } catch (error) {
+      toast.error("Erro ao carregar dados");
+      console.error(error);
+    } finally {
+      setLoadingNoticias(false);
+      setLoadingPodcasts(false);
+      setLoadingVideos(false);
+    }
+  };
+
+  fetchData();
+}, []);
 
   return (
     <div>
