@@ -37,7 +37,7 @@ export default function CasosCriminais() {
       </Link>
       
       <Link href="/noticia2020" className={styles.noUnderline}>
-      <DecadeCard image="/images/bg-home.png" text="Década de 2020" />
+      <DecadeCard image="/images/bg-home.png" text="Década de 2020" className={styles.description} />
       </Link>
     </div>
     </div>
