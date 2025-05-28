@@ -132,12 +132,14 @@ export default function UserProfilePage() {
     <div className={styles.pageBg}>
       <div className={styles.container}>
         <Button type="primary" onClick={() => router.push("/users")} className={styles.backButton}>
-          Voltar para lista de usuários
+          ⟵
         </Button>
 
         <ProfileCard user={user} API_URL={API_URL} posts={posts} />
 
-        <h3>Publicações</h3>
+         <div className={styles.titulo}>
+               <span>Posts</span>
+          </div>
         {posts.length === 0 ? (
           <p>Nenhuma publicação encontrada.</p>
         ) : (

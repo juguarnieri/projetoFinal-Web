@@ -1,13 +1,12 @@
 import React from "react";
-import { Input, Button } from "antd";
+import { Input } from "antd";
 import styles from "../../app/styles/UserProfile.module.css";
 
-export default function UserSearchHeader({ search, setSearch, handleClearCache }) {
+export default function UserSearchHeader({ search, setSearch }) {
   return (
     <div className={styles.header}>
-      <h1>Lista de Usuários</h1>
+      <h1>🕵🏻👁️🕶️</h1>
       <div className={styles.actions}>
-        <Button onClick={handleClearCache}>Limpar cache</Button>
         <Input.Search
           placeholder="Buscar por nome ou usuário"
           value={search}
