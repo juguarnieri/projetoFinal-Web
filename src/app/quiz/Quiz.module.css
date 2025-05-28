@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
+.titulo {
+  font-size: 2.3rem;
+  color: #111827;
+  font-weight: bold;
+  margin: 4rem 0 3rem 5rem; 
+  flex-direction: column;
+  font-family: 'League Spartan', 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  align-items: flex-start; 
+  justify-content: flex-start;
+  padding-bottom: 0.5rem;
+  position: relative;
+}
+
+.titulo::after {
+  content: "";
+  display: block;
+  margin: 1rem 0 0 0; 
+  width: 40rem;
+  height: 4px;
+  background: #030033;
+  border-radius: 2px;
+}
+
+.quizForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem 1rem;
+  background: rgba(255,255,255,0.97);
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(22, 119, 255, 0.08), 0 1.5px 4px rgba(0,0,0,0.06);
+}
+
+.card {
+  border-radius: 14px !important;
+  box-shadow: 0 2px 12px 0 rgba(22,119,255,0.07);
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 6px 24px 0 rgba(22,119,255,0.13);
+  transform: translateY(-4px) scale(1.01);
+}
+
+.question {
+  font-size: 1.18rem;
+  font-weight: 600;
+  color: #22223b;
+  margin-bottom: 1rem;
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+}
+
+.radio {
+  font-size: 1.08rem;
+  color: #222;
+  background: #f5f7fa;
+  border-radius: 6px;
+  padding: 0.4rem 0.7rem;
+  transition: background 0.2s;
+}
+
+.radio:hover,
+.radio:focus-within {
+  background: #e0e7ef;
+}
+
+.submitBtn {
+  background: linear-gradient(90deg, #1677ff 60%, #030033 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 2.5rem;
+  font-weight: bold;
+  font-size: 1.15rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  box-shadow: 0 2px 8px #1677ff22;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.submitBtn:hover {
+  background: linear-gradient(90deg, #030033 60%, #1677ff 100%);
+  box-shadow: 0 4px 16px #1677ff33;
+}
+
+.correctionList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.correct {
+  border-left: 6px solid #22c55e !important;
+  background: #e7fbe9 !important;
+}
+
+.incorrect {
+  border-left: 6px solid #ef4444 !important;
+  background: #fbeaea !important;
+}
+
+@media (max-width: 800px) {
+  .quizForm {
+    padding: 1rem 0.2rem 2rem 0.2rem;
+  }
+  .card {
+    margin-bottom: 1rem;
+  }
+}
