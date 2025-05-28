@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 120vh;
+  gap: 2rem;
   background-color: rgba(255, 255, 255, 0.785);
   padding: 0 3.125rem;
 
@@ -21,25 +21,24 @@
 }
 
 .aboutSection h1 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: bold;
   color: #000;
   margin-bottom: 1rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   font-family: 'Inter', sans-serif;
   text-align: left;
   width: 100%;
 }
 .aboutSection p {
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
   margin-bottom: 0.8rem;
   color: #000;
   text-align: justify;
-  width: 90%;
-  font-family: 'arial', sans-serif;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
 }
-
 .aboutSection span,
 .aboutSection strong {
   font-weight: bold;
@@ -58,12 +57,10 @@
   width: 100%;
   overflow: hidden;
 }
-
 .carousel {
   display: flex;
   transition: transform 0.5s ease-in-out;
 }
-
 .teamCard {
   flex: 0 0 calc(33.33% - 20px); /* 3 cards por vez */
   margin: 0 10px;
@@ -74,7 +71,11 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, box-shadow 0.3s;
   height: 30rem; 
-  width: 2rem; 
+  width: 20rem; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .teamCard:hover {
@@ -131,6 +132,18 @@
   right: -1.25rem;
 }
 
+@media (max-width: 1440px) {
+  .sobreWrapper {
+    padding: 0 2rem;
+  }
+  .aboutSection {
+    max-width: 50%;
+  }
+  .teamCard {
+    height: 26rem;
+    width: 8rem;
+  }
+}
 @media (max-width: 1024px) {
   .sobreWrapper {
     flex-direction: column;
@@ -171,29 +184,46 @@
   .sobreWrapper {
     flex-direction: column;
     padding: 20px 8px;
-    height: auto;
+    height: auto;   
+    align-items: center;
+    gap: 1rem;
   }
   .aboutSection {
     max-width: 100%;
     text-align: center;
     margin-bottom: 24px;
     margin-top: 2rem;
+    padding: 0 0.5rem;
   }
   .teamCard {
-    flex: 0 0 100%;
-    height: 220px;
+    flex: 0 0 90%;
+    height: 14rem;
     width: 60%;
-    margin: 0 0 16px 0;
     padding: 12px;
+    min-width: 120px;
+    max-width: 98vw;
+    padding: 0.5rem;
+    margin: 0 auto 1rem auto;
   }
   .teamPhoto {
-    height: 90px;
-    margin-bottom: 12px;
+    height: 7rem;
+    margin-bottom: 1rem;
+  }
+   .teamSection {
+    width: 100%;
+  }
+    .teamInfo h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .carousel {
+    flex-direction: column;
+    align-items: center;
   }
   .carouselButton {
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
   }
   .carouselButton.left {
     left: 0;
@@ -201,7 +231,6 @@
   .carouselButton.right {
     right: 0;
   }
-}
 
 @media (max-width: 480px) {
   .aboutSection h1 {
@@ -229,18 +258,7 @@
     font-size: 0.9rem;
   }
 }
-@media (max-width: 1440px) {
-  .sobreWrapper {
-    padding: 0 2rem;
-  }
-  .aboutSection {
-    max-width: 50%;
-  }
-  .teamCard {
-    height: 26rem;
-    width: 8rem;
-  }
-}
+
 
 @media (max-width: 1024px) {
   .sobreWrapper {
@@ -274,92 +292,7 @@
   }
 }
 
-@media (max-width: 768px) {
-  .sobreWrapper {
-    flex-direction: column;
-    padding: 20px 8px;
-    height: auto;
-    align-items: center;
-  }
-  .aboutSection {
-    max-width: 100%;
-    text-align: center;
-    margin-bottom: 24px;
-    padding: 0 0.5rem;
-  }
-  .teamSection {
-    width: 100%;
-  }
-  .teamCard {
-    flex: 0 0 100%;
-    height: 220px;
-    width: 90%;
-    margin: 0 0 16px 0;
-    padding: 12px;
-  }
-  .teamPhoto {
-    height: 90px;
-    margin-bottom: 12px;
-  }
-  .carouselButton {
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
-  }
-  .carouselButton.left {
-    left: 0;
-  }
-  .carouselButton.right {
-    right: 0;
-  }
-}
 
-@media (max-width: 480px) {
-  .sobreWrapper {
-    padding: 10px 2px;
-  }
-  .aboutSection h1 {
-    font-size: 1.1rem;
-    margin-top: 0.7rem;
-    margin-bottom: 0.7rem;
-  }
-  .aboutSection p {
-    font-size: 0.9rem;
-    width: 100%;
-    padding: 0 2px;
-  }
-  .teamCard {
-    height: 14rem;
-    padding: 0.5rem;
-    width: 90vw;
-    margin: 0 auto 10px auto;
-  }
-  .teamInfo h4 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  .teamInfo p {
-    font-size: 0.9rem;
-  }
-  .carouselButton {
-    width: 28px;
-    height: 28px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 375px) {
-  .aboutSection h1 {
-    font-size: 1rem;
-  }
-  .aboutSection p {
-    font-size: 0.85rem;
-  }
-  .teamCard {
-    height: 11rem;
-    padding: 0.3rem;
-    width: 95vw;
-  }
 }
 /* Modal Overlay */
 .modalOverlay {

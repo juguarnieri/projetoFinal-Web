@@ -1,29 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
+
 .bannerCard {
   width: 100%;
-  height: 25rem;
+  height: 17rem;
   margin-bottom: 2rem;
   background-size: cover;
   background-position: center;
   position: relative;
   box-shadow: 0 6px 24px rgba(37, 99, 235, 0.10);
   display: flex;
-  align-items: flex-end; 
-  font-family: 'League Spartan', 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  align-items: flex-end;  
   justify-content: flex-start; 
   overflow: hidden;
   border: none; 
 }
 
 .bannerText {
-  margin: 0 0 1.5rem 2rem; 
+  margin: 0 0 2rem 2rem; 
   color: #ffffff;
-  padding: 0.7rem 2rem;
+  padding: 0.6rem 1.5rem;
   border-radius: 12px;
-  font-size: 5rem;
-  font-weight: bold;
+  font-size: 4rem;
+  font-weight: 700;
   letter-spacing: 1px;
   font-family: 'League Spartan', 'Montserrat', 'Segoe UI', Arial, sans-serif;
   box-shadow: 0 2px 8px #030033;
   text-shadow: 1px 2px 8px #030033;
+  transition: background 0.3s;
 }
