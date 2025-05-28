@@ -4,15 +4,15 @@ import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import { Skeleton, message } from "antd";
 import { useRouter } from "next/navigation";
-import useSessionStorage from "../utils/sessionStorage";
 import UserSearchHeader from "../components/UserSearchHeader";
 import UserGrid from "../components/UserGrid";
 import PaginationBar from "../components/PaginationBar";
+import Banner from "../components/Banner";
 import styles from "../../app/styles/UserProfile.module.css";
 
 export default function UsersPage() {
   const router = useRouter();
-  const [users, setUsers] = useSessionStorage("users", []);
+  const [users, setUsers] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [current, setCurrent] = useState(1);
@@ -24,21 +24,10 @@ export default function UsersPage() {
 
   const fetchUsers = async () => {
     setLoading(true);
-    const cachedData = sessionStorage.getItem("usersData");
-
-    if (cachedData) {
-      const parsed = JSON.parse(cachedData);
-      setUsers(parsed);
-      setFilteredData(parsed);
-      setLoading(false);
-      return;
-    }
-
     try {
       const { data } = await axios.get("http://localhost:4000/api/users", { headers });
       setUsers(data);
       setFilteredData(data);
-      sessionStorage.setItem("usersData", JSON.stringify(data));
       setConnectionError(false);
     } catch (err) {
       setConnectionError(true);
@@ -68,34 +57,29 @@ export default function UsersPage() {
     return filteredData.slice((current - 1) * pageSize, current * pageSize);
   }, [filteredData, current, pageSize]);
 
-  const handleClearCache = () => {
-    sessionStorage.removeItem("usersData");
-    setUsers([]);
-    setFilteredData([]);
-    fetchUsers();
-  };
-
   return (
-    <div className={styles.pageWrapper}>
-      <UserSearchHeader
-        search={search}
-        setSearch={setSearch}
-        handleClearCache={handleClearCache}
-      />
-      <PaginationBar
-        current={current}
-        pageSize={pageSize}
-        total={filteredData.length}
-        onChange={setCurrent}
-        onPageSizeChange={setPageSize}
-      />
-      {loading ? (
-        <Skeleton active />
-      ) : connectionError ? (
-        <p>Conexão com o backend falhou.</p>
-      ) : (
-        <UserGrid users={paginated} router={router} />
-      )}
-    </div>
+    <>
+      <Banner title="Usuários" image="/images/bannerUsuarios.png" />
+      <div className={styles.pageWrapper}>
+        <UserSearchHeader
+          search={search}
+          setSearch={setSearch}
+        />
+        <PaginationBar
+          current={current}
+          pageSize={pageSize}
+          total={filteredData.length}
+          onChange={setCurrent}
+          onPageSizeChange={setPageSize}
+        />
+        {loading ? (
+          <Skeleton active />
+        ) : connectionError ? (
+          <p>Conexão com o backend falhou.</p>
+        ) : (
+          <UserGrid users={paginated} router={router} />
+        )}
+      </div>
+    </>
   );
 }

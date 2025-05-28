@@ -22,8 +22,10 @@ export default function PostCard({
             post.media_url
               ? post.media_url.startsWith("http")
                 ? post.media_url
-                : `${API_URL}/uploads/${post.media_url}`
-              : "https://placehold.co/300x300"
+                : post.media_url.startsWith("/uploads/")
+                  ? `${API_URL}${post.media_url}`
+                  : `${API_URL}/uploads/${post.media_url}`
+              : "/public/images/placehold.png" 
           }
           alt={post.title}
           className={styles.postImage}
@@ -38,7 +40,7 @@ export default function PostCard({
           style={{ color: "#1677ff" }}
           disabled={userLikes[post.id] === "like"}
         >
-          👍 Curtir
+          👍 
         </Button>,
         <Button
           key="unlike"
@@ -48,16 +50,15 @@ export default function PostCard({
           style={{ color: "#ff4d4f" }}
           disabled={userLikes[post.id] === "unlike"}
         >
-          👎 Descurtir
+          👎 
         </Button>,
         <span key="count">Likes: <strong>{post.like_count || 0}</strong></span>,
-        <span key="dislike">Dislikes: <strong>{post.dislike_count || 0}</strong></span>,
         <Button
           key="comments"
           onClick={() => handleOpenComments(post.id)}
           type="link"
         >
-          💬 Ver Comentários
+          💬 
         </Button>,
       ]}
     >
@@ -68,7 +69,7 @@ export default function PostCard({
               ? post.profile_picture.startsWith("http")
                 ? post.profile_picture
                 : `${API_URL}/uploads/${post.profile_picture}`
-              : "https://placehold.co/40x40"
+              : "/img/placeholder.png"
           }
           alt={post.username || "Usuário"}
           style={{

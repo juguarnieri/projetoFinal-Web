@@ -7,6 +7,7 @@ import { FaSearch } from "react-icons/fa";
 import styles from "./Feed.module.css";
 import PostCard from "../components/PostCard";
 import CommentsModal from "../components/CommentsModal";
+import Banner from "../components/Banner";
 
 const API_URL = "http://localhost:4000";
 const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
@@ -144,8 +145,9 @@ export default function FeedPage() {
   if (loading) return <Skeleton active />;
 
   return (
+    <div>
+      <Banner title="Publicações" image="/images/bannerFeed.png" />
     <div className={styles.feedWrapper}>
-      <h2>Feed de Publicações</h2>
 
       <div className={styles.feedHeader}>
         <div className={styles.feedSearchGroup}>
@@ -215,6 +217,7 @@ export default function FeedPage() {
         loadingComments={loadingComments}
         API_URL={API_URL}
       />
+    </div>
     </div>
   );
 }

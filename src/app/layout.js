@@ -16,10 +16,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <div className="layoutRoot">
+          <Header />
+          <main className="mainContent">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

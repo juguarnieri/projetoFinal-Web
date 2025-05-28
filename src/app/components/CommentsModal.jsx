@@ -1,4 +1,5 @@
 import { Modal, Skeleton, List, Avatar } from "antd";
+import Link from "next/link";
 
 export default function CommentsModal({
   visible,
@@ -28,7 +29,11 @@ export default function CommentsModal({
                 avatar={
                   <Avatar src={comment.profile_picture ? `${API_URL}/uploads/${comment.profile_picture}` : undefined} />
                 }
-                title={comment.username}
+                title={
+                  <Link href={`/users/${comment.user_id}`} style={{ color: "#1677ff", fontWeight: 600 }}>
+                    @{comment.username}
+                  </Link>
+                }
                 description={comment.content}
               />
             </List.Item>
