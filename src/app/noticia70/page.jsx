@@ -1,4 +1,4 @@
-'use client';
+  'use client';
 
 import { useEffect, useState } from 'react';
 import styles from '../noticia70/Noticia70.module.css';
@@ -10,7 +10,7 @@ export default function Noticias() {
   const [tituloFiltro, setTituloFiltro] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/news', {
+    fetch('http://localhost:4000/api/news?decade=70', {
       headers: {
         'x-api-key': 'nUN1NOc7BuiiO7iSYR7gek0bxG821Z',
       },
