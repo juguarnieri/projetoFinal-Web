@@ -13,6 +13,7 @@ export default function NewsCard({ title, image, description }) {
                 height={200}
                 className={styles.image}
                 />
+                
                 <h2>{title}</h2>
      
             </div>
