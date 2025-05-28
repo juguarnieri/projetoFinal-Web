@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import styles from '../noticia90/Noticia90.module.css';
 import NewsCard from '../components/NewsCard';
+import Link from 'next/link';
 
 export default function Noticias() {
   const [noticias, setNoticias] = useState([]);
@@ -62,6 +63,7 @@ export default function Noticias() {
                   noticia.title.toLowerCase().includes(tituloFiltro.toLowerCase())
               )
               .map((noticia) => (
+                <Link href={`/noticiaCaryn/${noticia.id}`} key={noticia.id} className={styles.link}>
                 <div key={noticia.id} className={styles.card}>
                   <NewsCard
                     title={noticia.title}
@@ -69,6 +71,7 @@ export default function Noticias() {
                     description={noticia.description}
                   />
                 </div>
+                </Link>
               ))}
           </div>
         </div>
