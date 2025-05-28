@@ -11,6 +11,8 @@ const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
 export default function SobrePage() {
   const [teamMembers, setTeamMembers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedMember, setSelectedMember] = useState(null);
 
   useEffect(() => {
     async function fetchTeamMembers() {
@@ -35,6 +37,15 @@ export default function SobrePage() {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     }
+  };
+  const handleOpenModal = (member) => {
+    setSelectedMember(member);
+    setModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+    setSelectedMember(null);
   };
 
   return (
@@ -73,18 +84,23 @@ export default function SobrePage() {
             style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}
           >
             {teamMembers.map((member) => (
-              <div key={member.id} className={styles.teamCard}>
-                <img
-                  src={member.photo_url}
-                  alt={member.name}
-                  className={styles.teamPhoto}
-                />
-                <div className={styles.teamInfo}>
-                  <h4>{member.name}</h4>
-                  <p>{member.role}</p>
-                </div>
-              </div>
-            ))}
+          <div
+            key={member.id}
+            className={styles.teamCard}
+            onClick={() => handleOpenModal(member)} // <-- Adicione isso!
+            style={{ cursor: "pointer" }}
+          >
+          <img
+            src={member.photo_url}
+            alt={member.name}
+            className={styles.teamPhoto}
+          />
+          <div className={styles.teamInfo}>
+            <h4>{member.name}</h4>
+          <p>{member.role}</p>
+        </div>
+      </div>
+    ))}
           </div>
           <button className={`${styles.carouselButton} ${styles.right}`} onClick={handleNext}>
             &#8250;
@@ -92,6 +108,20 @@ export default function SobrePage() {
         </div>
       </section>
       </div>
+      {modalVisible && selectedMember && (
+        <div className={styles.modalOverlay} onClick={handleCloseModal}>
+          <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+            <img
+              src={selectedMember.photo_url}
+              alt={selectedMember.name}
+              className={styles.modalPhoto}
+            />
+            <h3>{selectedMember.name}</h3>
+            <p>{selectedMember.role}</p>
+            <button className={styles.closeButton} onClick={handleCloseModal}>Fechar</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
