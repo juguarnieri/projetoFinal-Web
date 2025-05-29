@@ -1,18 +1,17 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from '../styles/Podcast.module.css'; 
+import styles from '../styles/Podcast.module.css';
 
 export default function Podcasts() {
   const [podcasts, setPodcasts] = useState([]);
   const [erro, setErro] = useState('');
   const [busca, setBusca] = useState('');
+  const [podcastSelecionado, setPodcastSelecionado] = useState(null);
 
   useEffect(() => {
     fetch('http://localhost:4000/api/podcasts', {
-      headers: {
-        'x-api-key': 'nUN1NOc7BuiiO7iSYR7gek0bxG821Z',
-      },
+      headers: { 'x-api-key': 'nUN1NOc7BuiiO7iSYR7gek0bxG821Z' },
     })
       .then((res) => res.json())
       .then((json) => {
@@ -40,6 +39,14 @@ export default function Podcasts() {
       categorias.push(p.category);
     }
   });
+
+  const abrirModal = (podcast) => {
+    setPodcastSelecionado(podcast);
+  };
+
+  const fecharModal = () => {
+    setPodcastSelecionado(null);
+  };
 
   return (
     <div>
@@ -75,7 +82,7 @@ export default function Podcasts() {
                 <div
                   key={podcast.id}
                   className={styles.card}
-                  onClick={() => window.open(podcast.link, '_blank')}
+                  onClick={() => abrirModal(podcast)}
                 >
                   <img
                     src={podcast.image}
@@ -83,12 +90,47 @@ export default function Podcasts() {
                     className={styles.imagem}
                   />
                   <h3 className={styles.title}>{podcast.title}</h3>
-                  <p className={styles.description}>{podcast.description}</p>
                 </div>
               ))}
           </div>
         </div>
       ))}
+
+      {podcastSelecionado && (
+        <div className={styles.modalOverlay} onClick={fecharModal}>
+          <div
+            className={styles.modalContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={podcastSelecionado.image}
+              alt={podcastSelecionado.title}
+              className={styles.modalImage}
+            />
+            <h2 className={styles.modalTitle}>{podcastSelecionado.title}</h2>
+            <p className={styles.modalDescription}>
+              {podcastSelecionado.description}
+            </p>
+            <div className={styles.modalButtons}>
+              <a
+                href={podcastSelecionado.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.botaoOuvir}
+              >
+                Ouvir
+              </a>
+              <button
+                onClick={fecharModal}
+                className={styles.botaoFechar}
+                aria-label="Fechar modal"
+              >
+                Fechar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
