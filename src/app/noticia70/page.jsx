@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import styles from '../noticia70/Noticia70.module.css';
 import NewsCard from '../components/NewsCard';
 import Link from 'next/link';
+import Banner from '../components/Banner';
 
 export default function Noticias() {
   const [noticias, setNoticias] = useState([]);
@@ -37,20 +38,7 @@ export default function Noticias() {
 
   return (
     <div>
-      <div className={styles.banner}>
-        <img src="/images/scenecrime.jpg" title="Notícias" style={{ width: '100%', height: '25rem', objectFit: 'cover' }} />
-        <h1 className={styles.titulo}>Notícias</h1>
-      </div>
-
-      <div className={styles.filtro}>
-        <input
-          type="text"
-          placeholder="Buscar por título..."
-          value={tituloFiltro}
-          onChange={(e) => setTituloFiltro(e.target.value)}
-          className={styles.input}
-        />
-      </div>
+      <Banner />
 
       {categorias.map((categoria) => (
         <div key={categoria} className={styles.categoria}>

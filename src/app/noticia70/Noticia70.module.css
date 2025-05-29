@@ -75,7 +75,6 @@
   padding: 1rem;
   gap: 1.2rem;
   transition: box-shadow 0.2s;
-  border: 1px solid #eee;
 }
 
 .card:hover {
