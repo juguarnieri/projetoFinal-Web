@@ -56,7 +56,7 @@ export default function Podcasts() {
           className={styles.bannerImg}
           alt="Banner"
         />
-        <h1 className={styles.titulo}>Podcasts</h1>
+        <h1 className={styles.bannerText}>Podcasts</h1>
       </div>
 
       <div className={styles.filtroContainer}>
