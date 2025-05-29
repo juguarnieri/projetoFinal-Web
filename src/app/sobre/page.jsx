@@ -28,16 +28,21 @@ export default function SobrePage() {
   }, []);
 
   const handleNext = () => {
-    if (currentIndex < teamMembers.length - 3) {
+    if (currentIndex < teamMembers.length - 3) { // Ajuste para permitir que o carrossel vá além
       setCurrentIndex(currentIndex + 1);
+    } else {
+      setCurrentIndex(0); // Volta ao início quando chega ao final
     }
   };
 
   const handlePrev = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
+    } else {
+      setCurrentIndex(teamMembers.length - 1); // Vai para o último item ao voltar do início
     }
   };
+
   const handleOpenModal = (member) => {
     setSelectedMember(member);
     setModalVisible(true);
