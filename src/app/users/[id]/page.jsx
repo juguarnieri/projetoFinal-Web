@@ -8,6 +8,7 @@ import styles from "../../../app/styles/UserCard.module.css";
 import ProfileCard from "../../components/ProfileCard";
 import PostCard from "../../components/PostCard";
 import CommentsModal from "../../components/CommentsModal";
+import ScrollToTopButton from "../../components/ScrollToTopButton"; 
 
 const API_URL = "http://localhost:4000";
 const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
@@ -137,9 +138,9 @@ export default function UserProfilePage() {
 
         <ProfileCard user={user} API_URL={API_URL} posts={posts} />
 
-         <div className={styles.titulo}>
-               <span>Posts</span>
-          </div>
+        <div className={styles.titulo}>
+          <span>Posts</span>
+        </div>
         {posts.length === 0 ? (
           <p>Nenhuma publicação encontrada.</p>
         ) : (
@@ -182,6 +183,8 @@ export default function UserProfilePage() {
         loadingComments={loadingComments}
         API_URL={API_URL}
       />
+
+      <ScrollToTopButton /> 
     </div>
   );
 }
