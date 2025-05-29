@@ -8,6 +8,7 @@ import UserSearchHeader from "../components/UserSearchHeader";
 import UserGrid from "../components/UserGrid";
 import PaginationBar from "../components/PaginationBar";
 import Banner from "../components/Banner";
+import ScrollToTopButton from "../components/ScrollToTopButton"; // Importando o botão de scroll
 import styles from "../../app/styles/UserProfile.module.css";
 
 export default function UsersPage() {
@@ -80,6 +81,7 @@ export default function UsersPage() {
           <UserGrid users={paginated} router={router} />
         )}
       </div>
+      <ScrollToTopButton />
     </>
   );
 }

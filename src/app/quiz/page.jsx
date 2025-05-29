@@ -7,7 +7,7 @@ import styles from "./Quiz.module.css";
 import Banner from "../components/Banner";
 import QuizQuestion from "../components/QuizQuestion";
 import QuizCorrection from "../components/QuizCorrection";
-
+import ScrollToTopButton from "../components/ScrollToTopButton"; // Importando o botão de scroll
 const API_URL = "http://localhost:4000";
 const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
 
@@ -106,6 +106,7 @@ export default function Quiz() {
         )}
       </Modal>
       <ToastContainer position="top-right" autoClose={4000} />
+      <ScrollToTopButton />
     </div>
   );
 }

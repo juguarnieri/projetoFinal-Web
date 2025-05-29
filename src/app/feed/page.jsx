@@ -8,6 +8,7 @@ import styles from "./Feed.module.css";
 import PostCard from "../components/PostCard";
 import CommentsModal from "../components/CommentsModal";
 import Banner from "../components/Banner";
+import ScrollToTopButton from "../components/ScrollToTopButton"; 
 
 const API_URL = "http://localhost:4000";
 const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
@@ -218,6 +219,7 @@ export default function FeedPage() {
         API_URL={API_URL}
       />
     </div>
+    <ScrollToTopButton />
     </div>
   );
 }
