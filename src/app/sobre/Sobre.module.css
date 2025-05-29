@@ -4,74 +4,75 @@
   align-items: center;
   gap: 2rem;
   background-color: rgba(255, 255, 255, 0.785);
-  padding: 0 3.125rem;
-
+  padding: 2rem;
+  height: 100%;
 }
 
 .aboutSection {
-  flex: 1;
-  max-width: 40%;
+  flex: 1; 
+  max-width: 50%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
-  padding: 1rem 0;
+  padding: 1rem;
   box-sizing: border-box;
-  margin-bottom: 1rem;
 }
 
 .aboutSection h1 {
-  font-size: 1.6rem;
+  font-size: 2.5rem; 
   font-weight: bold;
   color: #000;
   margin-bottom: 1rem;
-  margin-top: 1.5rem;
   font-family: 'Inter', sans-serif;
-  text-align: left;
-  width: 100%;
 }
+
 .aboutSection p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 0.8rem;
+  font-size: 1.4rem; 
+  line-height: 2; 
+  margin-bottom: 1rem;
   color: #000;
   text-align: justify;
-  width: 100%;
   font-family: 'Inter', sans-serif;
 }
+
 .aboutSection span,
 .aboutSection strong {
   font-weight: bold;
   font-family: 'Poppins', 'Inter', 'Segoe UI', Arial, sans-serif;
   letter-spacing: 0.5px;
 }
+
 .teamSection {
-  flex: 1;
+  flex: 1; 
+  max-width: 50%; 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; 
 }
 
 .carouselWrapper {
   position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow: hidden; 
 }
+
 .carousel {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out; 
 }
+
 .teamCard {
-  flex: 0 0 calc(33.33% - 20px); /* 3 cards por vez */
+  flex: 0 0 calc(30% - 20px); 
   margin: 0 10px;
   background-color: #030033;
   border-radius: 1rem;
-  padding: 1.25rem;
+  padding: 1rem;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, box-shadow 0.3s;
-  height: 30rem; 
-  width: 20rem; 
+  height: 40rem; 
+  width: 6rem; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,21 +86,21 @@
 
 .teamPhoto {
   width: 100%;
-  height: 18rem;
+  height: 25rem; 
   border-radius: 1rem;
   object-fit: cover;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .teamInfo h4 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 1rem;
   color: #f9f9f9;
 }
 
 .teamInfo p {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #FF0700;
 }
 
@@ -132,51 +133,33 @@
   right: -1.25rem;
 }
 
-@media (max-width: 1440px) {
-  .sobreWrapper {
-    padding: 0 2rem;
-  }
-  .aboutSection {
-    max-width: 50%;
-  }
-  .teamCard {
-    height: 26rem;
-    width: 8rem;
-  }
-}
 @media (max-width: 1024px) {
   .sobreWrapper {
     flex-direction: column;
     padding: 2rem 1vw;
-    height: auto;
   }
-  .aboutSection {
-    max-width: 100%;
-    text-align: center;
-    margin-bottom: 2rem;
-}
-.teamCard {
-  flex: 0 0 100%;
-  height: 18rem;
-  width: 100%;
-  height: 350px;
-  padding: 0.75rem;
-}
-.teamPhoto {
-  height: 8rem;
-  margin-bottom: 1rem;
-}
-.carouselButton {
-  width: 2rem;
-  height: 2rem;
-  font-size: 1rem;
-}
 
-  .carouselButton.left {
-    left: 0;
+  .aboutSection,
+  .teamSection {
+    max-width: 100%;
   }
-  .carouselButton.right {
-    right: 0;
+
+  .teamCard {
+    flex: 0 0 100%;
+    height: 30rem; 
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  .teamPhoto {
+    height: 20rem; 
+    margin-bottom: 1rem;
+  }
+
+  .carouselButton {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
   }
 }
 
@@ -184,194 +167,99 @@
   .sobreWrapper {
     flex-direction: column;
     padding: 20px 8px;
-    height: auto;   
     align-items: center;
     gap: 1rem;
   }
-  .aboutSection {
+
+  .aboutSection,
+  .teamSection {
     max-width: 100%;
-    text-align: center;
-    margin-bottom: 24px;
-    margin-top: 2rem;
-    padding: 0 0.5rem;
   }
+
   .teamCard {
     flex: 0 0 90%;
-    height: 14rem;
+    height: 25rem; 
     width: 60%;
     padding: 12px;
-    min-width: 120px;
-    max-width: 98vw;
-    padding: 0.5rem;
     margin: 0 auto 1rem auto;
   }
+
   .teamPhoto {
-    height: 7rem;
+    height: 18rem; 
     margin-bottom: 1rem;
   }
-   .teamSection {
-    width: 100%;
-  }
-    .teamInfo h4 {
+
+  .teamInfo h4 {
     font-size: 1rem;
     margin-bottom: 0.5rem;
   }
+
   .carousel {
     flex-direction: column;
     align-items: center;
   }
+
   .carouselButton {
     width: 2rem;
     height: 2rem;
     font-size: 1rem;
   }
-  .carouselButton.left {
-    left: 0;
-  }
-  .carouselButton.right {
-    right: 0;
-  }
-
-@media (max-width: 480px) {
-  .aboutSection h1 {
-    font-size: 1.2rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-  .aboutSection p {
-    font-size: 0.9rem;
-    width: 100%;
-  }
-    .aboutSection {
-    margin-top: 1rem;
-  }
-  .teamCard {
-    height: 18rem;
-    padding: 0.5rem;
-    width: 5rem;
-  }
-  .teamInfo h4 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  .teamInfo p {
-    font-size: 0.9rem;
-  }
 }
 
-
-@media (max-width: 1024px) {
-  .sobreWrapper {
-    flex-direction: column;
-    padding: 2rem 1vw;
-    height: auto;
-    align-items: center;
-  }
-  .aboutSection {
-    max-width: 100%;
-    text-align: center;
-    margin-bottom: 2rem;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-  }
-  .teamSection {
-    width: 100%;
-  }
-  .teamCard {
-    flex: 0 0 80%;
-    height: 18rem;
-    width: 90%;
-    padding: 0.75rem;
-    margin: 0 auto 1rem auto;
-  }
-  .teamPhoto {
-    height: 8rem;
-    margin-bottom: 1rem;
-  }
-}
-
-
-}
-/* Modal Overlay */
 .modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.6);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1000; 
 }
 
-/* Modal Content */
 .modalContent {
-  background: #fff;
+  background-color: #fff;
+  padding: 2rem;
   border-radius: 1rem;
-  padding: 2rem 1.5rem;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 250px;
-  max-width: 90vw;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
 }
 
 .modalPhoto {
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1rem;
-  border: 3px solid #030033;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #030033;
+}
+
+.modalDescription {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 1.5rem;
 }
 
 .closeButton {
-  margin-top: 1.5rem;
-  padding: 0.5rem 1.2rem;
-  background: #030033;
+  background-color: #ff4d4f;
   color: #fff;
   border: none;
+  padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   cursor: pointer;
   font-size: 1rem;
-  transition: background 0.2s;
-}
-.closeButton:hover {
-  background: #22225a;
 }
 
-@media (max-width: 320px) {
-  .sobreWrapper {
-    padding: 4px 0;
-  }
-  .aboutSection h1 {
-    font-size: 0.95rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-  .aboutSection p {
-    font-size: 0.8rem;
-    padding: 0 1px;
-  }
-  .teamCard {
-    height: 9rem;
-    padding: 0.2rem;
-    width: 98vw;
-  }
-  .teamInfo h4 {
-    font-size: 0.85rem;
-  }
-  .teamInfo p {
-    font-size: 0.75rem;
-  }
-  .carouselButton {
-    width: 22px;
-    height: 22px;
-    font-size: 12px;
-  }
+.closeButton:hover {
+  background-color: #d9363e;
 }
