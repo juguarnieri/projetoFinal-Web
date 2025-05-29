@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap');
 
 .banner {
-  width: 100vw;
+  width: 100%;
   height: 17rem;
   margin-bottom: 2rem;
   background-size: cover;
@@ -73,15 +73,15 @@
 }
 
 .card {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .card:hover {
@@ -96,25 +96,101 @@
 }
 
 .card:hover .imagem {
-  transform: scale(1.05); 
+  transform: scale(1.05);
 }
 
 .title {
-    font-weight: 700;
-    font-size: 1rem;
-    margin: 0.8rem 1rem 0.4rem;
-}
-  
-.description {
-    max-height: 0;
-    overflow: hidden;
-    margin: 0 1rem;
-    font-size: 0.9rem;
-    color: #555;
-    transition: max-height 0.4s ease, padding 0.4s ease;
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0.8rem 1rem 0.4rem;
+  color: black;
 }
 
-.card:hover .description {
-    max-height: 100px; 
-    padding: 0.5rem 0 1rem; 
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  padding: 20px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+  position: relative;
+  text-align: center;
+}
+
+.modalImage {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.modalTitle {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.modalDescription {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+  max-height: 150px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.botaoOuvir {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botaoOuvir:hover {
+  background-color: #45a049;
+}
+
+.botaoFechar {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botaoFechar:hover {
+  background-color: #c0392b;
 }
