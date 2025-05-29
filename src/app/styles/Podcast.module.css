@@ -12,7 +12,7 @@
   align-items: flex-end;  
   justify-content: flex-start; 
   overflow: hidden;
-  border: none; 
+  border: none;
 }
 
 .bannerImg {
@@ -22,6 +22,23 @@
   position: absolute;
   z-index: 1;
 }
+
+.bannerText {
+  position: relative;     
+  z-index: 2;             
+  margin: 0 0 2rem 2rem; 
+  color: #ffffff;
+  padding: 0.6rem 1.5rem;
+  border-radius: 12px;
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: 'League Spartan', 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  box-shadow: 0 2px 8px #030033;
+  text-shadow: 1px 2px 8px #030033;
+  transition: background 0.3s;
+}
+
 
 .titulo {
   position: relative;
@@ -66,7 +83,7 @@
   font-family: 'Georgia', serif;
   text-transform: uppercase;
   text-align: left;
-  width: 50%; 
+  width: 45%; 
 }
 
 .grid {
