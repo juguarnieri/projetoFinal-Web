@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/NewsCard.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function NewsCard({ title, image, description, link }) {
   let validImage = "/images/placehold.png";
+
   if (typeof image === "string" && image.trim() !== "") {
     if (image.startsWith("http") || image.startsWith("/")) {
       validImage = image;
+    } else {
+
+      validImage = `http://localhost:4000/uploads/${image}`;
     }
   }
 
