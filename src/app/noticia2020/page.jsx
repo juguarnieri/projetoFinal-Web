@@ -1,9 +1,12 @@
-  'use client';
+'use client';
 
 import { useEffect, useState } from 'react';
 import styles from '../noticia2020/Noticia2020.module.css';
 import NewsCard from '../components/NewsCard';
 import Link from 'next/link';
+import ScrollToTopButton from "../components/ScrollToTopButton"; 
+import Banner from "../components/Banner";
+import VoltarDecadasButton from "../components/VoltarDecadasButton";
 
 export default function Noticias() {
   const [noticias, setNoticias] = useState([]);
@@ -37,45 +40,28 @@ export default function Noticias() {
 
   return (
     <div>
-      <div className={styles.banner}>
-        <img src="/images/scenecrime.jpg" title="Notícias" style={{ width: '100%', height: '25rem', objectFit: 'cover' }} />
-        <h1 className={styles.titulo}>Notícias</h1>
-      </div>
-
-      <div className={styles.filtro}>
-        <input
-          type="text"
-          placeholder="Buscar por título..."
-          value={tituloFiltro}
-          onChange={(e) => setTituloFiltro(e.target.value)}
-          className={styles.input}
-        />
-      </div>
-
+      <Banner title="DÉCADA DE 20" image="/images/imagem22.png" />
+      <VoltarDecadasButton />
       {categorias.map((categoria) => (
         <div key={categoria} className={styles.categoria}>
           <h2>{categoria}</h2>
           <div className={styles.carousel}>
             {noticias
-              .filter(
-                (noticia) =>
-                  noticia.category === categoria &&
-                  noticia.title.toLowerCase().includes(tituloFiltro.toLowerCase())
-              )
+              .filter((noticia) => noticia.category === categoria)
               .map((noticia) => (
-                <Link href={`/noticiaCaryn/${noticia.id}`} key={noticia.id} className={styles.link}>
                 <div key={noticia.id} className={styles.card}>
                   <NewsCard
                     title={noticia.title}
-                    image={noticia.image || '/images/220.svg'}
+                    image={noticia.image}
                     description={noticia.description}
+                    link={`/noticiaCaryn/${noticia.id}`}
                   />
                 </div>
-                </Link>
               ))}
           </div>
         </div>
       ))}
+      <ScrollToTopButton />
     </div>
   );
 }

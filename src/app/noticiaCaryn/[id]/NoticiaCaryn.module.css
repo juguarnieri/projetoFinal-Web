@@ -16,3 +16,33 @@
   margin-top: 2rem;
   font-style: italic;
 }
+
+.voltarBtn {
+  position: relative;
+  left: 0;
+  margin-left: 0;
+  margin-top: 5em;    /* Mais para baixo */
+  margin-bottom: 2.5rem;
+  padding: 0.55rem 1.5rem;
+  background: linear-gradient(90deg, #e53935 60%, #ff7961 100%);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  font-weight: 700;
+  font-size: 1.08rem;
+  text-decoration: none;
+  box-shadow: 0 4px 18px #e5393533;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.voltarBtn:hover, .voltarBtn:focus {
+  background: linear-gradient(90deg, #b71c1c 60%, #e57373 100%);
+  transform: translateY(-2px) scale(1.03);
+  color: #fff;
+  text-decoration: none;
+}

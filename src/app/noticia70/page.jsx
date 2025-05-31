@@ -1,10 +1,12 @@
-  'use client';
+'use client';
 
 import { useEffect, useState } from 'react';
 import styles from '../noticia70/Noticia70.module.css';
 import NewsCard from '../components/NewsCard';
 import Link from 'next/link';
 import Banner from '../components/Banner';
+import ScrollToTopButton from "../components/ScrollToTopButton"; 
+import VoltarDecadasButton from "../components/VoltarDecadasButton";
 
 export default function Noticias() {
   const [noticias, setNoticias] = useState([]);
@@ -38,8 +40,8 @@ export default function Noticias() {
 
   return (
     <div>
-      <Banner />
-
+      <Banner title="DÉCADA DE 70" image="/images/imagem70.png" />
+      <VoltarDecadasButton />
       {categorias.map((categoria) => (
         <div key={categoria} className={styles.categoria}>
           <h2>{categoria}</h2>
@@ -51,19 +53,19 @@ export default function Noticias() {
                   noticia.title.toLowerCase().includes(tituloFiltro.toLowerCase())
               )
               .map((noticia) => (
-                <Link href={`/noticiaCaryn/${noticia.id}`} key={noticia.id} className={styles.link}>
                 <div key={noticia.id} className={styles.card}>
                   <NewsCard
                     title={noticia.title}
-                    image={noticia.image || '/images/220.svg'}
+                    image={noticia.image}
                     description={noticia.description}
+                    link={`/noticiaCaryn/${noticia.id}`}
                   />
                 </div>
-                </Link>
               ))}
           </div>
         </div>
       ))}
+      <ScrollToTopButton />
     </div>
   );
 }

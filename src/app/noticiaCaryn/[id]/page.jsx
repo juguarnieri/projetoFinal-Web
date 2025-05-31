@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import NewsDetailCard from '../../components/NewsDetailCard';
+import styles from '../../styles/NewsDetailCard.module.css';
 import { useParams } from 'next/navigation';
 
 export default function NoticiaPage() {
@@ -47,11 +49,16 @@ export default function NoticiaPage() {
 
   return (
     <div>
+      <Link href="/casos-criminais" className={styles.voltarBtn}>
+        ⟵ Voltar para notícias
+      </Link>
       <NewsDetailCard
         title={noticia.title}
         image={noticia.image || '/images/220.svg'}
         description={noticia.description}
         text={noticia.text}
+        link={noticia.link}
+        
       />
     </div>
   );
