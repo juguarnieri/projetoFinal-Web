@@ -9,21 +9,21 @@
   position: relative;
 }
 
-.titulo::after {
-  content: "";
-  display: block;
-  margin-top: 1rem; 
-  width: 20rem;
-  height: 4px;
-    font-family: 'Sanchez', serif;
-  background: #030033;
-  border-radius: 2px;
-}
-.wrapper {
-  padding: 5rem;
-  background-color: #f9f9f9;
+.titulo {
+  font-size: 2.3rem;
+  color: #111827;
+  font-weight: bold;
+  margin: 2rem 0 1.5rem; 
+  text-align: left;
+  font-family: 'Sanchez', serif;
+  position: relative;
 }
 
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px; /* igual ao Podcast.module.css, ajuste se necessário */
+}
 
 .grid {
   display: grid;

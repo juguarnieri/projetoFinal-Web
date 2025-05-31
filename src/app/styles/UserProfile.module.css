@@ -2,13 +2,15 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+    overflow-x: auto; /* se necessário */
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px; 
+  margin-top: 0;     
   flex-wrap: wrap;
   gap: 16px;
 }

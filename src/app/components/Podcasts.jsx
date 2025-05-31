@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import styles from '../styles/Podcast.module.css';
+import SearchHeader from "./SearchHeader";
 
 export default function Podcasts() {
   const [podcasts, setPodcasts] = useState([]);
@@ -56,45 +57,42 @@ export default function Podcasts() {
           className={styles.bannerImg}
           alt="Banner"
         />
-        <h1 className={styles.bannerText}>Podcasts</h1>
+        <h1 className={styles.bannerText}>PODCASTS</h1>
       </div>
 
-      <div className={styles.filtroContainer}>
-        <input
-          type="text"
-          placeholder="O que deseja ouvir hoje?"
-          value={busca}
-          onChange={(e) => setBusca(e.target.value)}
-          className={styles.filtroInput}
+      <div className={styles.wrapper}>
+        <SearchHeader
+          search={busca}
+          setSearch={setBusca}
+          title="Podcasts"
+          placeholder="Buscar podcasts..."
+          icon="🎧"
         />
-        <button onClick={() => setBusca('')} className={styles.botaoLimpar}>
-          Limpar
-        </button>
-      </div>
 
-      {categorias.map((cat) => (
-        <div key={cat}>
-          <h2 className={styles.categoriaTitulo}>{cat.toUpperCase()}</h2>
-          <div className={styles.grid}>
-            {podcastsFiltrados
-              .filter((p) => p.category === cat)
-              .map((podcast) => (
-                <div
-                  key={podcast.id}
-                  className={styles.card}
-                  onClick={() => abrirModal(podcast)}
-                >
-                  <img
-                    src={podcast.image}
-                    alt={podcast.title}
-                    className={styles.imagem}
-                  />
-                  <h3 className={styles.title}>{podcast.title}</h3>
-                </div>
-              ))}
+        {categorias.map((cat) => (
+          <div key={cat}>
+            <h2 className={styles.categoriaTitulo}>{cat.toUpperCase()}</h2>
+            <div className={styles.grid}>
+              {podcastsFiltrados
+                .filter((p) => p.category === cat)
+                .map((podcast) => (
+                  <div
+                    key={podcast.id}
+                    className={styles.card}
+                    onClick={() => abrirModal(podcast)}
+                  >
+                    <img
+                      src={podcast.image}
+                      alt={podcast.title}
+                      className={styles.imagem}
+                    />
+                    <h3 className={styles.title}>{podcast.title}</h3>
+                  </div>
+                ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
       {podcastSelecionado && (
         <div className={styles.modalOverlay} onClick={fecharModal}>

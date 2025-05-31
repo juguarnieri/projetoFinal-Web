@@ -7,7 +7,7 @@ import styles from "./Quiz.module.css";
 import Banner from "../components/Banner";
 import QuizQuestion from "../components/QuizQuestion";
 import QuizCorrection from "../components/QuizCorrection";
-import ScrollToTopButton from "../components/ScrollToTopButton"; // Importando o botão de scroll
+import ScrollToTopButton from "../components/ScrollToTopButton"; 
 const API_URL = "http://localhost:4000";
 const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
 

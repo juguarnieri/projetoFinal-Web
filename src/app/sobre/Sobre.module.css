@@ -27,7 +27,7 @@
 }
 
 .aboutSection p {
-  font-size: 1.4rem; 
+  font-size: 1.2rem; 
   line-height: 2; 
   margin-bottom: 1rem;
   color: #000;
@@ -179,7 +179,7 @@
   .teamCard {
     flex: 0 0 90%;
     height: 25rem; 
-    width: 60%;
+    width: 80%;
     padding: 12px;
     margin: 0 auto 1rem auto;
   }

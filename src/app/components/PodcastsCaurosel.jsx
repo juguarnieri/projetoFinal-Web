@@ -9,10 +9,7 @@ export default function PodcastsCarousel({ podcasts, loading }) {
   const carouselRef = useRef(null);
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.titulo}>
-        <span>Top Podcasts</span>
-      </div>
+    <div>
       {loading ? (
         <Skeleton active />
       ) : (

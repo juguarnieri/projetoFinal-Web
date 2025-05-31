@@ -8,7 +8,7 @@ import UserSearchHeader from "../components/UserSearchHeader";
 import UserGrid from "../components/UserGrid";
 import PaginationBar from "../components/PaginationBar";
 import Banner from "../components/Banner";
-import ScrollToTopButton from "../components/ScrollToTopButton"; // Importando o botão de scroll
+import ScrollToTopButton from "../components/ScrollToTopButton"; 
 import styles from "../../app/styles/UserProfile.module.css";
 
 export default function UsersPage() {
@@ -60,11 +60,14 @@ export default function UsersPage() {
 
   return (
     <>
-      <Banner title="Usuários" image="/images/bannerUsuarios.png" />
+      <Banner title="USERS" image="/images/bannerUsuarios.png" />
       <div className={styles.pageWrapper}>
         <UserSearchHeader
           search={search}
           setSearch={setSearch}
+          title="Usuários"
+          placeholder="Buscar usuários..."
+          icon="🕵🏻"
         />
         <PaginationBar
           current={current}

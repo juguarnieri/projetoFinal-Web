@@ -5,6 +5,7 @@ import axios from "axios";
 import Head from "next/head";
 import { ToastContainer, toast } from "react-toastify";
 import Banner from "../components/Banner";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 import VideosSection from "../components/VideosSection";
 import styles from "./Video.module.css";
 
@@ -13,6 +14,7 @@ const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
 export default function VideosPage() {
   const [videos, setVideos] = useState([]);
   const [loadingVideos, setLoadingVideos] = useState(true);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +45,10 @@ export default function VideosPage() {
       <VideosSection
         videos={videos}
         loading={loadingVideos}
+        search={search}
+        setSearch={setSearch}
       />
+      <ScrollToTopButton />
 
       <ToastContainer position="top-right" autoClose={4500} />
     </div>
