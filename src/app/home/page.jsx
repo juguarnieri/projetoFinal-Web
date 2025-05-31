@@ -1,17 +1,24 @@
 "use client";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Home.module.css";
 import Banner from "../components/Banner";
 import Image from "next/image";
+import Carregando from "../components/Carregando";
 
 
 export default function HomePage() {
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     document.body.classList.add("homeBgBody");
+    const timer = setTimeout(() => setLoading(false), 1200);
     return () => {
       document.body.classList.remove("homeBgBody");
+      clearTimeout(timer);
     };
   }, []);
+
+  if (loading) return <Carregando />;
 
   return (
     <div>
