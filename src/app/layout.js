@@ -11,15 +11,15 @@ const font = Roboto({
 });
 
 export const metadata = {
-  title: "Meu App",
-  description: "Aplicação com Next.js",
+  title: "Crime Whispers",
+  description: "Projeto Final - Crime Whispers",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="icons/favicon.ico" />
       </head>
       <body>
         <div className="layoutRoot">
