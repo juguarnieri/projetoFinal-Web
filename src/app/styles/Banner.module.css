@@ -7,12 +7,13 @@
   background-size: cover;
   background-position: center;
   position: relative;
-  box-shadow: 0 6px 24px rgba(37, 99, 235, 0.10);
+  box-shadow: 0 6px 24px rgb(30, 35, 48);
   display: flex;
   align-items: flex-end;  
   justify-content: flex-start; 
   overflow: hidden;
   border: none; 
+    overflow-x: auto;
 }
 
 .bannerText {
@@ -27,4 +28,5 @@
   box-shadow: 0 2px 8px #030033;
   text-shadow: 1px 2px 8px #030033;
   transition: background 0.3s;
+    overflow-x: auto;
 }

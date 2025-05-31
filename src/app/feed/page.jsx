@@ -8,6 +8,7 @@ import styles from "./Feed.module.css";
 import PostCard from "../components/PostCard";
 import CommentsModal from "../components/CommentsModal";
 import Banner from "../components/Banner";
+import SearchHeader from "../components/SearchHeader";
 import ScrollToTopButton from "../components/ScrollToTopButton"; 
 
 const API_URL = "http://localhost:4000";
@@ -147,79 +148,57 @@ export default function FeedPage() {
 
   return (
     <div>
-      <Banner title="Publicações" image="/images/bannerFeed.png" />
-    <div className={styles.feedWrapper}>
+      <Banner title="PUBLICAÇÕES" image="/images/imagempubli.png" />
+      <div className={styles.feedWrapper}>
+        <SearchHeader
+          search={search}
+          setSearch={setSearch}
+          title="Publicações"
+          placeholder="Buscar publicações, legendas ou usuário..."
+          icon="📰"
+        />
+        {paginated.length === 0 ? (
+          <p>Nenhuma publicação encontrada.</p>
+        ) :
+          paginated.map((post) => (
+            <PostCard
+              key={post.id}
+              post={post}
+              API_URL={API_URL}
+              handleLike={handleLike}
+              handleUnlike={handleUnlike}
+              handleOpenComments={handleOpenComments}
+              likeLoading={likeLoading}
+              userLikes={userLikes}
+              userId={post.id}
+            />
+          ))}
 
-      <div className={styles.feedHeader}>
-        <div className={styles.feedSearchGroup}>
-          <input
-            type="text"
-            placeholder="Pesquisar publicações, legendas ou usuário..."
-            value={searchInput}
-            onChange={e => setSearchInput(e.target.value)}
-            className={styles.feedSearchInput}
-          />
+        <div className={styles.feedPagination}>
           <button
-            onClick={() => setSearch(searchInput)}
-            className={styles.feedSearchButton}
-            title="Pesquisar"
+            onClick={() => setCurrent((c) => Math.max(1, c - 1))}
+            disabled={current === 1}
           >
-            <FaSearch />
+            Anterior
+          </button>
+          Página {current} de {Math.ceil(filteredData.length / pageSize)}
+          <button
+            onClick={() => setCurrent((c) => c + 1)}
+            disabled={current >= Math.ceil(filteredData.length / pageSize)}
+          >
+            Próxima
           </button>
         </div>
-        <div>
-          <button
-            onClick={() => { setSearchInput(""); setSearch(""); setCurrent(1); }}
-            className={styles.feedClearButton}
-          >
-            Limpar busca
-          </button>
-        </div>
+
+        <CommentsModal
+          visible={commentsVisible}
+          onClose={handleCloseComments}
+          comments={comments}
+          loadingComments={loadingComments}
+          API_URL={API_URL}
+        />
       </div>
-
-      {paginated.length === 0 ? (
-        <p>Nenhuma publicação encontrada.</p>
-      ) : (
-        paginated.map((post) => (
-          <PostCard
-            key={post.id}
-            post={post}
-            API_URL={API_URL}
-            handleLike={handleLike}
-            handleUnlike={handleUnlike}
-            handleOpenComments={handleOpenComments}
-            likeLoading={likeLoading}
-            userLikes={userLikes}
-            userId={post.id}
-          />
-        ))
-      )}
-
-      <div className={styles.feedPagination}>
-        <button
-          onClick={() => setCurrent((c) => Math.max(1, c - 1))}
-          disabled={current === 1}
-        >
-          Anterior
-        </button>
-        Página {current} de {Math.ceil(filteredData.length / pageSize)}
-        <button
-          onClick={() => setCurrent((c) => c + 1)}
-          disabled={current >= Math.ceil(filteredData.length / pageSize)}
-        >
-          Próxima
-        </button>
-      </div>
-
-      <CommentsModal
-        visible={commentsVisible}
-        onClose={handleCloseComments}
-        comments={comments}
-        loadingComments={loadingComments}
-        API_URL={API_URL}
-      />
-    </div>
-    <ScrollToTopButton />
+      <ScrollToTopButton />
     </div>
   );
 }

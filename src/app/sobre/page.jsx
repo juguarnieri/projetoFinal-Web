@@ -28,10 +28,10 @@ export default function SobrePage() {
   }, []);
 
   const handleNext = () => {
-    if (currentIndex < teamMembers.length - 3) { // Ajuste para permitir que o carrossel vá além
+    if (currentIndex < teamMembers.length - 3) { 
       setCurrentIndex(currentIndex + 1);
     } else {
-      setCurrentIndex(0); // Volta ao início quando chega ao final
+      setCurrentIndex(0); 
     }
   };
 
@@ -39,7 +39,7 @@ export default function SobrePage() {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     } else {
-      setCurrentIndex(teamMembers.length - 1); // Vai para o último item ao voltar do início
+      setCurrentIndex(teamMembers.length - 1); 
     }
   };
 
@@ -92,7 +92,7 @@ export default function SobrePage() {
           <div
             key={member.id}
             className={styles.teamCard}
-            onClick={() => handleOpenModal(member)} // <-- Adicione isso!
+            onClick={() => handleOpenModal(member)} 
             style={{ cursor: "pointer" }}
           >
           <img

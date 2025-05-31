@@ -1,6 +1,6 @@
 import React from "react";
 import { Input } from "antd";
-import styles from "../../app/styles/UserProfile.module.css";
+import styles from "../styles/UserProfile.module.css";
 
 export default function SearchHeader({
   search,

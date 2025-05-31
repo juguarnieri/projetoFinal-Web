@@ -9,9 +9,6 @@ export default function NoticiasSection({ noticias, loading, onClickNoticia }) {
 
   return (
     <div>
-      <div className={styles.titulo}>
-        <span>Notícias do Dia</span>
-      </div>
       {loading ? (
         <Skeleton active />
       ) : (
