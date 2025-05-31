@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap');
 .banner {
   position: relative;
   width: 100%;
@@ -17,7 +18,8 @@
 .titulo {
   position: absolute;
   bottom: 1rem;
-  left: 1.5rem;
+  left: 1rem;
+  font-family: 'Sanchez', serif;
   color: #fff;
   font-size: 2.2rem;
   font-weight: bold;
@@ -51,11 +53,22 @@
 }
 
 .categoria h2 {
-  margin: 1.5rem 0 1rem 1rem;
-  font-size: 1.3rem;
-  color: #1976d2;
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-size: 1.15rem;
+  color: #000000;
+  min-width: 12rem;
+  font-family: 'Sanchez', serif;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin: 2.2rem 0 1.2rem 0;
+  padding: 0.5rem 1.2rem;
+  background: linear-gradient(90deg, #94919128 0%, #f8ecec 100%);
+  border-left: 6px solid #e53935;
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 2px 12px #e5393522;
+  display: inline-block;
+  text-transform: uppercase;
+  font-family: 'Sanchez', serif;
+  transition: background 0.2s;
 }
 
 .carousel {
@@ -68,26 +81,18 @@
 .card {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  background: #fff;
+  align-items: center;
+  background: #dfcccc13;
   border-radius: 0.7rem;
   box-shadow: 0 2px 8px #0001;
   padding: 1rem;
   gap: 1.2rem;
   transition: box-shadow 0.2s;
-  border: 1px solid #eee;
+  width: 1200px;     
+  margin: 0 auto;       
 }
-
 .card:hover {
   box-shadow: 0 6px 24px #0002;
-}
-
-.card img {
-  width: 120px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-  flex-shrink: 0;
 }
 
 .erro {
@@ -104,18 +109,45 @@
   margin-top: 2rem;
 }
 
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
 @media (max-width: 700px) {
   .card {
     flex-direction: column;
     align-items: stretch;
     padding: 0.7rem;
   }
-  .card img {
-    width: 100%;
-    height: 160px;
-    margin-bottom: 0.7rem;
-  }
+
   .carousel {
     gap: 0.7rem;
   }
+}
+.voltarBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2.2rem;
+  padding: 0.55rem 1.5rem;
+  background: linear-gradient(90deg, #e53935 60%, #ff7961 100%);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  font-weight: 700;
+  font-size: 1.08rem;
+  text-decoration: none;
+  box-shadow: 0 4px 18px #e5393533;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  outline: none;
+}
+
+.voltarBtn:hover,
+.voltarBtn:focus {
+  background: linear-gradient(90deg, #b71c1c 60%, #e57373 100%);
+  transform: translateY(-2px) scale(1.03);
+  color: #fff;
+  text-decoration: none;
 }

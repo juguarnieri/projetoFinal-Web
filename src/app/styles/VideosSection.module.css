@@ -22,7 +22,7 @@
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px; /* igual ao Podcast.module.css, ajuste se necessário */
+  padding: 0 24px; 
 }
 
 .grid {
