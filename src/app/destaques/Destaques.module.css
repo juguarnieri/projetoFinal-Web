@@ -36,6 +36,38 @@
   border-radius: 2px;
 }
 
+@media (max-width: 1200px) {
+  .container {
+    max-width: 98vw;
+    padding: 0 12px 2rem 12px;
+  }
+  .sectionTitle {
+    font-size: 1.6rem;
+    margin: 1.2rem 0 0.8rem 0;
+    width: 100%;
+  }
+  .destaqueBloco {
+    max-width: 98vw;
+  }
+  .destaqueImagem {
+    max-width: 98vw;
+    height: 220px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .container {
+    padding: 0 4px 1.5rem 4px;
+  }
+  .sectionTitle {
+    font-size: 1.2rem;
+    margin: 0.7rem 0 0.5rem 0;
+  }
+  .destaqueImagem {
+    height: 160px;
+  }
+}
+
 @media (max-width: 900px) {
   .container {
     padding: 0 6px 2rem 6px;

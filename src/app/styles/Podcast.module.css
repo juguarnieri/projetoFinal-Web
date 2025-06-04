@@ -46,7 +46,7 @@
   color: #fff;
   font-size: 3.5rem;
   font-weight: 700;
-  font-family: 'League Spartan', 'Montserrat', 'Segoe UI', sans-serif;
+  font-family: 'Sanchez', serif;
   text-shadow: 1px 2px 8px #030033;
 }
 
@@ -298,4 +298,18 @@
   .wrapper {
     padding: 0 8px;
   }
+}
+
+.title,
+.categoriaTitulo,
+.modalTitle,
+.titulo {
+  font-weight: bold ;
+  font-family: 'League Spartan', Arial, sans-serif;
+}
+
+.description,
+.modalDescription {
+  font-weight: bold;
+  color: #333;
 }
