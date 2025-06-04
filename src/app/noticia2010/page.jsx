@@ -10,7 +10,6 @@ import VoltarDecadasButton from "../components/VoltarDecadasButton";
 export default function Noticias() {
   const [noticias, setNoticias] = useState([]);
   const [erro, setErro] = useState('');
-  const [tituloFiltro, setTituloFiltro] = useState('');
 
   useEffect(() => {
     fetch('http://localhost:4000/api/news?decade=2010', {
@@ -41,26 +40,14 @@ export default function Noticias() {
     <div>
       <Banner title="DÉCADA DE 10" image="/images/imagem21.png" />
       <VoltarDecadasButton />
-      <div className={styles.filtro}>
-        <input
-          type="text"
-          placeholder="Buscar por título..."
-          value={tituloFiltro}
-          onChange={(e) => setTituloFiltro(e.target.value)}
-          className={styles.input}
-        />
-      </div>
+
 
       {categorias.map((categoria) => (
         <div key={categoria} className={styles.categoria}>
           <h2>{categoria}</h2>
           <div className={styles.carousel}>
             {noticias
-              .filter(
-                (noticia) =>
-                  noticia.category === categoria &&
-                  noticia.title.toLowerCase().includes(tituloFiltro.toLowerCase())
-              )
+              .filter((noticia) => noticia.category === categoria)
               .map((noticia) => (
                 <div key={noticia.id} className={styles.card}>
                   <NewsCard

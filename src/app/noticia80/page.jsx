@@ -11,7 +11,6 @@ import VoltarDecadasButton from "../components/VoltarDecadasButton";
 export default function Noticias() {
   const [noticias, setNoticias] = useState([]);
   const [erro, setErro] = useState('');
-  const [tituloFiltro, setTituloFiltro] = useState('');
 
   useEffect(() => {
     fetch('http://localhost:4000/api/news?decade=80', {
@@ -36,37 +35,19 @@ export default function Noticias() {
   if (erro) return <p className={styles.erro}>{erro}</p>;
   if (noticias.length === 0) return <p className={styles.carregando}>Carregando notícias...</p>;
 
-  const categorias = [...new Set(noticias.map((noticia) => noticia.category))];
+  const categorias = [...new Set(noticias.map(n => n.category))];
 
   return (
     <div>
       <Banner title="DÉCADA DE 80" image="/images/imagem80.png" />
       <VoltarDecadasButton />
-      <div className={styles.banner}>
-        <img src="/images/scenecrime.jpg" title="Notícias" style={{ width: '100%', height: '25rem', objectFit: 'cover' }} />
-        <h1 className={styles.titulo}>Notícias</h1>
-      </div>
-
-      <div className={styles.filtro}>
-        <input
-          type="text"
-          placeholder="Buscar por título..."
-          value={tituloFiltro}
-          onChange={(e) => setTituloFiltro(e.target.value)}
-          className={styles.input}
-        />
-      </div>
 
       {categorias.map((categoria) => (
         <div key={categoria} className={styles.categoria}>
           <h2>{categoria}</h2>
           <div className={styles.carousel}>
             {noticias
-              .filter(
-                (noticia) =>
-                  noticia.category === categoria &&
-                  noticia.title.toLowerCase().includes(tituloFiltro.toLowerCase())
-              )
+              .filter((noticia) => noticia.category === categoria)
               .map((noticia) => (
                 <div key={noticia.id} className={styles.card}>
                   <NewsCard
