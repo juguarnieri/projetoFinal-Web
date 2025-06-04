@@ -12,7 +12,7 @@ export default function Noticias() {
   const [erro, setErro] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/news?decade=2010', {
+    fetch('http://localhost:4000/api/news?decade=anos 2010', {
       headers: {
         'x-api-key': 'nUN1NOc7BuiiO7iSYR7gek0bxG821Z',
       },
