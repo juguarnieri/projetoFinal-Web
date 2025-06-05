@@ -1,13 +1,15 @@
 .container {
-  max-width: 1100px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 3rem 1.5rem;
+  padding: 2rem 1rem 2.5rem 1rem;
   min-height: auto;
   box-sizing: border-box;
-  background: rgba(217, 213, 213, 0.276);
+  background:
+    linear-gradient(rgba(217, 213, 213, 0.85), rgba(217, 213, 213, 0.85)),
+    url('/images/crime.png') center center/cover no-repeat;
   border-radius: 18px;
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   z-index: 1;
 }
 
@@ -17,7 +19,7 @@
 
 .heading {
   font-size: 2.2rem;
-  color: #030033;
+  color: #b41a1a;
   font-weight: 700;
   margin-bottom: 0.7rem;
   letter-spacing: -1px;
@@ -45,12 +47,16 @@
 }
 
 .contactSection {
-  background: #f8fafc;
-  border-radius: 12px;
-  padding: 2rem;
-  max-width: 600px;
-  margin: 0 auto 2rem auto;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 16px;
+  padding: 2.5rem 4rem;
+  max-width: 100%;
+  margin: 2rem auto;
   box-shadow: 0 2px 12px #03003311;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .contactSection h3 {
@@ -63,6 +69,25 @@
 .contactSection p {
   color: #333;
   margin-bottom: 16px;
+  text-align: justify;
+  width: 100%;
+}
+
+.contactSection label {
+  text-align: justify;
+  width: 100%;
+}
+
+.contactSection input,
+.contactSection textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background: #f5f7fa;
+  transition: border 0.2s;
+  text-align: justify;
+  width: 100%;
 }
 
 .contactForm {
@@ -108,9 +133,10 @@
 
 .flexRow {
   display: flex;
-  gap: 2.5rem;
+  flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center; 
+  gap: 2.5rem;
   margin: 2.5rem 0;
 }
 
@@ -186,13 +212,13 @@
   }
   .container {
     padding: 1.2rem 0.5rem 2rem 0.5rem;
-    max-width: 100vw;
+    max-width: 98vw;
   }
   .heading {
     font-size: 1.3rem;
   }
   .contactSection {
-    padding: 1rem;
+    padding: 1.2rem 0.5rem;
     max-width: 100vw;
   }
   .image {

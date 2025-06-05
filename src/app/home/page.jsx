@@ -21,16 +21,6 @@ export default function HomePage() {
         </section>
 
         <div className={styles.flexRow}>
-          <div className={styles.imageContainer}>
-            <Image
-              src="/images/crime.png"
-              alt="Ilustração Crime Whispers"
-              width={600}
-              height={320}
-              className={styles.image}
-            />
-          </div>
-
           <section className={styles.contactSection}>
             <h3>Contato</h3>
             <p>Tem dúvidas, sugestões ou deseja colaborar? Fale com a nossa equipe!</p>
