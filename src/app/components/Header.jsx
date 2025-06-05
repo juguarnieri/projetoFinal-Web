@@ -21,17 +21,18 @@ export default function Header() {
       <div className={styles.topBar}>
         <FaBars className={styles.menuIcon} onClick={() => setMenuOpen(!menuOpen)} />
         <h1 className={styles.logo} style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div className={styles.logoBox}>CW</div>
+          <Link href="/destaques" className={styles.logoLink} style={{ textDecoration: "none" }}>
+            <div className={styles.logoBox}>CW</div>
+          </Link>
           <span>CRIME </span>
           <span className={styles.logoRed}>WHISPERS</span>
         </h1>
       </div>
 
       <nav className={`${styles.nav} ${menuOpen ? styles.showMenu : ""}`}>
-        <Link href="/" className={styles.home}>
+        <Link href="/destaques" className={styles.home}>
           <FaHome />
         </Link>
-        <Link href="/destaques">Destaques</Link>
         <Link href="/casos-criminais">Casos Criminais</Link>
         <Link href="/videos">Vídeos</Link>
         <Link href="/podcasts">Podcasts</Link>
@@ -39,6 +40,7 @@ export default function Header() {
         <Link href="/feed">Feed</Link>
         <Link href="/users">Users</Link>
         <Link href="/sobre">Sobre</Link>
+        <Link href="/home">Contato</Link>
         <FaSearch
           className={styles.searchIcon}
           onClick={() => setShowSearch((v) => !v)}

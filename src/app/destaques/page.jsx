@@ -9,8 +9,8 @@ import Banner from "../components/Banner";
 import NoticiasSection from "../components/NoticiasSection";
 import PodcastsCarousel from "../components/PodcastsCaurosel";
 import VideosDestaques from "../components/VideosDestaques";
+import Carregando from "../components/Carregando";
 import styles from "./Destaques.module.css";
-
 
 const HEADERS = { "x-api-key": process.env.NEXT_PUBLIC_API_KEY };
 
@@ -23,6 +23,7 @@ export default function NewsDoDia() {
   const [loadingVideos, setLoadingVideos] = useState(true);
   const [modalInfo, setModalInfo] = useState({ visible: false, noticia: null });
   const [isClient, setIsClient] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setIsClient(true);
@@ -51,6 +52,13 @@ export default function NewsDoDia() {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Carregando />;
 
   return (
     <>

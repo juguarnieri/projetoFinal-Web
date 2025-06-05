@@ -1,30 +1,14 @@
 "use client";
-import { useState, useEffect } from "react";
 import styles from "./Home.module.css";
 import Banner from "../components/Banner";
 import Image from "next/image";
-import Carregando from "../components/Carregando";
-
 
 export default function HomePage() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    document.body.classList.add("homeBgBody");
-    const timer = setTimeout(() => setLoading(false), 1200);
-    return () => {
-      document.body.classList.remove("homeBgBody");
-      clearTimeout(timer);
-    };
-  }, []);
-
-  if (loading) return <Carregando />;
-
   return (
     <div>
       <Banner
-        title="Bem-vindo ao Crime Whispers"
-        image="/images/cinza.png"
+        title="CRIME WHISPERS"
+        image="/images/imagemContato.png"
       />
       <div className={styles.container}>
         <section className={styles.section}>

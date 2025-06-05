@@ -133,6 +133,22 @@
   right: -1.25rem;
 }
 
+@media (max-width: 1366px) {
+  .carousel {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+  }
+  .teamCard {
+    flex: 0 0 48%;
+    max-width: 48%;
+    margin: 1%;
+    height: 32rem;
+    width: 100%;
+  }
+}
+
 @media (max-width: 1024px) {
   .sobreWrapper {
     flex-direction: column;
