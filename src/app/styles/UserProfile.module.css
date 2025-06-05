@@ -2,7 +2,7 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-    overflow-x: auto; /* se necessário */
+    overflow-x: auto; 
 }
 
 .header {
@@ -48,20 +48,16 @@
 }
 
 .userCard {
-  border-radius: 14px !important;
+  border-radius: 14px ;
   box-shadow: 0 2px 12px 0 rgba(22,119,255,0.07);
   transition: box-shadow 0.2s;
   cursor: pointer;
-  background: #f8fafc;
+  background: #d7d9db;
   text-align: center;
   width: 220px;        
   min-width: 180px;
   margin: 0 auto;
   padding-bottom: 10px;
-}
-
-.userCard:hover {
-  box-shadow: 0 6px 24px 0 rgba(22,119,255,0.13);
 }
 
 .userImg {
@@ -75,7 +71,7 @@
 .name {
   font-size: 15px;      
   font-weight: 600;
-  color: #1677ff;
+  color: rgb(13, 99, 219);
   margin-top: 6px;
   margin-bottom: 2px;
 }
@@ -86,9 +82,18 @@
   margin-bottom: 0;
 }
 
-@media (max-width: 1200px) {
+@media (min-width: 1200px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    gap: 32px; 
+    margin-top: 24px;
+    max-width: 1600px; 
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pageWrapper {
+    max-width: 1400px; 
+    padding: 20px; 
   }
 }
 @media (max-width: 900px) {
@@ -101,4 +106,28 @@
     grid-template-columns: 1fr;
     gap: 18px;
   }
+}
+.profileButton {
+  margin-top: 10px;
+  background-color: #111827;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; 
+  max-width: 200px; 
+  text-align: center;
+}
+
+.profileButton:hover {
+  background-color: #374b75;
+}
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
 }
