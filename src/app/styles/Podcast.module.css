@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap');
 .banner {
   width: 100%;
   height: 17rem;
@@ -308,8 +308,8 @@
   font-family: 'League Spartan', Arial, sans-serif;
 }
 
-.description,
-.modalDescription {
+.description
+ {
   font-weight: bold;
   color: #333;
 }
