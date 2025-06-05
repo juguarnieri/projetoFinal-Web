@@ -128,3 +128,24 @@
   background: #eee;
   display: block;
 }
+
+@media (max-width: 1366px) {
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto 3rem auto;
+    padding: 0 90px; 
+  }
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 0; 
+    justify-content: center;
+  }
+  .card {
+    border-radius: 12px;
+  }
+  .thumb {
+    height: 200px;
+    border-radius: 8px;
+  }
+}

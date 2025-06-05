@@ -114,6 +114,48 @@
   margin: 2.5rem 0;
 }
 
+@media (max-width: 1366px) {
+  .container {
+    max-width: 90vw;
+    padding: 1.5rem 0.7rem 2rem 0.7rem;
+    margin-bottom: 2rem;
+  }
+  .heading {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+  .paragraph {
+    font-size: 0.98rem;
+    max-width: 90vw;
+  }
+  .imageContainer {
+    margin: 1rem 0;
+  }
+  .image {
+    border-radius: 10px;
+  }
+  .contactSection {
+    max-width: 80vw;
+    padding: 1rem;
+  }
+  .contactSection h3 {
+    font-size: 1.1rem;
+  }
+  .contactForm input,
+  .contactForm textarea {
+    font-size: 0.95rem;
+    padding: 8px;
+  }
+  .contactForm button[type="submit"] {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+  }
+  .flexRow {
+    gap: 1.2rem;
+    margin: 1.2rem 0;
+  }
+}
+
 @media (max-width: 1100px) {
   .container {
     max-width: 95vw;

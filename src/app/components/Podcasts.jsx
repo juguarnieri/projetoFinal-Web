@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/Podcast.module.css';
 import SearchHeader from "./SearchHeader";
+import ScrollToTopButton from "./ScrollToTopButton"; 
 
 export default function Podcasts() {
   const [podcasts, setPodcasts] = useState([]);
@@ -129,6 +130,7 @@ export default function Podcasts() {
           </div>
         </div>
       )}
+      <ScrollToTopButton />
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="icons/favicon.ico" />
       </head>
       <body>
         <div className="layoutRoot">

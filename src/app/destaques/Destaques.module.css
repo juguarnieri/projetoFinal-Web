@@ -36,6 +36,35 @@
   border-radius: 2px;
 }
 
+@media (max-width: 1366px) {
+  .container {
+    max-width: 96vw;
+    padding: 0 8px 1.5rem 8px;
+  }
+  .sectionTitle {
+    font-size: 1.4rem;
+    margin: 1rem 0 0.7rem 0;
+    width: 100%;
+  }
+  .destaqueBloco {
+    max-width: 96vw;
+    margin: 1.5rem auto;
+  }
+  .destaqueImagem {
+    max-width: 96vw;
+    height: 200px;
+  }
+  .destaqueTexto {
+    font-size: 1rem;
+    max-width: 900px;
+    margin-top: 0.7rem;
+  }
+  .destaqueTitulo {
+    font-size: 2.1rem;
+    margin-bottom: 0.7rem;
+  }
+}
+
 @media (max-width: 1200px) {
   .container {
     max-width: 98vw;

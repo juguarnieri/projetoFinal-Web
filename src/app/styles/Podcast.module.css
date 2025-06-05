@@ -1,4 +1,3 @@
-
 .banner {
   width: 100%;
   height: 17rem;
@@ -297,6 +296,20 @@
   }
   .wrapper {
     padding: 0 8px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .wrapper {
+    max-width: 1100px;
+    margin: 0 auto 3rem auto;
+    padding: 0 80px; 
+  }
+  .grid {
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 1.5rem;
+    padding: 0 0 2rem 0; 
+    justify-content: center;
   }
 }
 
