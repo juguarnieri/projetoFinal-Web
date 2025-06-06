@@ -30,9 +30,14 @@ export default function PodcastsCarousel({ podcasts, loading }) {
             className={styles.carousel}
           >
             {podcasts.map((podcast) => {
-              const imageUrl = podcast.image?.startsWith("http")
-                ? podcast.image
-                : `${process.env.NEXT_PUBLIC_API_URL}/uploads/${podcast.image}`;
+              let imageUrl = "https://via.placeholder.com/400x200?text=Sem+Imagem";
+              if (typeof podcast.image === "string" && podcast.image.trim() !== "") {
+                if (podcast.image.startsWith("http")) {
+                  imageUrl = podcast.image;
+                } else {
+                  imageUrl = `${process.env.NEXT_PUBLIC_API_URL?.replace(/\/api$/, "")}/uploads/${podcast.image}`;
+                }
+              }
               return (
                 <div
                   key={podcast.id}
@@ -40,7 +45,7 @@ export default function PodcastsCarousel({ podcasts, loading }) {
                   onClick={() => window.open(podcast.link, "_blank")}
                 >
                   <img
-                    src={imageUrl || "https://via.placeholder.com/400x200?text=Sem+Imagem"}
+                    src={imageUrl}
                     alt={podcast.title}
                     className={styles.image}
                   />

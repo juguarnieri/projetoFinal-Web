@@ -144,6 +144,10 @@ export default function FeedPage() {
     setComments([]);
   };
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [current]);
+
   if (loading) return <Skeleton active />;
 
   return (

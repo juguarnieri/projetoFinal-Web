@@ -12,7 +12,7 @@ export default function PaginationBar({ current, pageSize, total, onChange, onPa
       onShowSizeChange={(curr, size) => onPageSizeChange(size)}
       className={styles.pagination}
       showSizeChanger
-      pageSizeOptions={["5", "10", "20"]}
+      pageSizeOptions={["10", "20", "50"]}
     />
   );
 }

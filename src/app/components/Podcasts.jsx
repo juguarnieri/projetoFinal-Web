@@ -83,7 +83,13 @@ export default function Podcasts() {
                     onClick={() => abrirModal(podcast)}
                   >
                     <img
-                      src={podcast.image}
+                      src={
+                        podcast.image
+                          ? podcast.image.startsWith("http")
+                            ? podcast.image
+                            : `${process.env.NEXT_PUBLIC_API_URL?.replace(/\/api$/, "")}/uploads/${podcast.image}`
+                          : "/images/placeholder.png"
+                      }
                       alt={podcast.title}
                       className={styles.imagem}
                     />
@@ -102,7 +108,13 @@ export default function Podcasts() {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={podcastSelecionado.image}
+              src={
+                podcastSelecionado.image
+                  ? podcastSelecionado.image.startsWith("http")
+                    ? podcastSelecionado.image
+                    : `${process.env.NEXT_PUBLIC_API_URL?.replace(/\/api$/, "")}/uploads/${podcastSelecionado.image}`
+                  : "/images/placeholder.png"
+              }
               alt={podcastSelecionado.title}
               className={styles.modalImage}
             />

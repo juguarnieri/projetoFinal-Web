@@ -123,7 +123,13 @@ export default function SobrePage() {
             />
             <h3>{selectedMember.name}</h3>
             <p>{selectedMember.role}</p>
-            <button className={styles.closeButton} onClick={handleCloseModal}>Fechar</button>
+            <button
+  className={styles.closeButton}
+  onClick={handleCloseModal}
+  aria-label="Fechar modal"
+>
+  &times;
+</button>
           </div>
         </div>
       )}

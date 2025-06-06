@@ -21,7 +21,6 @@ function groupByCategory(videos) {
 }
 
 export default function VideosSection({ videos, loading, search, setSearch }) {
-  // Se search/setSearch existem, filtra, senão mostra todos
   const filteredVideos = search && setSearch
     ? videos.filter(
         (video) =>
