@@ -63,7 +63,7 @@ export default function VideosSection({ videos, loading, search, setSearch }) {
                         video.image
                           ? (video.image.startsWith("http")
                               ? video.image
-                              : `${process.env.NEXT_PUBLIC_API_URL}/uploads/${video.image}`)
+                              : `${process.env.NEXT_PUBLIC_API_URL?.replace(/\/api$/, "")}/uploads/${video.image}`)
                           : getYoutubeThumb(video.link)
                       }
                       alt={video.title}
