@@ -25,7 +25,7 @@ export default function VideosDestaques({ videos = [], loading }) {
                 video.image
                   ? video.image.startsWith("http")
                     ? video.image
-                    : `${process.env.NEXT_PUBLIC_API_URL}/uploads/${video.image}`
+                    : `${process.env.NEXT_PUBLIC_API_URL.replace(/\/api$/, "")}/uploads/${video.image}`
                   : `https://img.youtube.com/vi/${(video.link || "").split("v=")[1]}/hqdefault.jpg`
               }
               alt={video.title}
