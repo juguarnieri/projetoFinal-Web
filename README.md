@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="uploads/capaback.jpeg" alt="Imagem do Projeto" width=800 />
+  <img src="public/images/capaweb.png" alt="Imagem do Projeto" width=800 />
 </p>
 
 <h2 style="color:red">CRIME WHISPERS</h2>
