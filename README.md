@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+<p align="center">
+  <img src="uploads/capaback.jpeg" alt="Imagem do Projeto" width=800 />
+</p>
 
-First, run the development server:
+<h2 style="color:red">CRIME WHISPERS</h2>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Crime Whispers** é uma plataforma inovadora disponível tanto para web quanto para dispositivos móveis, desenvolvida para conectar pessoas interessadas em notícias e casos reais ao redor do mundo. O objetivo é oferecer um ambiente moderno e acessível onde os usuários podem acompanhar as principais notícias, manter-se informados sobre acontecimentos relevantes e compartilhar suas próprias experiências, relatos e casos.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📄Descrição
+A plataforma vai além do simples acesso à informação: ela incentiva a participação ativa dos usuários, permitindo que publiquem notícias e relatos, promovendo a troca de informações e experiências em uma comunidade segura, interativa e colaborativa. Com recursos pensados para facilitar a navegação, a interação e o engajamento, a Crime Whispers se destaca como referência para quem busca estar sempre atualizado sobre o que acontece no mundo policial, em qualquer lugar e a qualquer momento.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🚀 Tecnologias Utilizadas
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Web (Next.js)
 
-## Learn More
+- ✔ **Next.js**
+- ✔ **React.js**
 
-To learn more about Next.js, take a look at the following resources:
+## 👥 Participantes da Equipe
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Foto | Nome | Função | GitHub | E-mail |
+|------|------|--------|--------|--------|
+| <img src="https://github.com/annabialeme.png" width="60"/> | **Anna Beatriz Leme Alves** | Dev | [@annabialeme](https://github.com/annabialeme) | anna.b.alves7@aluno.senai.br |
+| <img src="https://github.com/annabeatriz17.png" width="60"/> | **Anna Beatriz Ribeiro Valentim** | Dev | [@annabeatriz17](https://github.com/annabeatriz17) | anna.b.valentim@aluno.senai.br |
+| <img src="https://github.com/juguarnieri.png" width="60"/> | **Júlia Andrade Guarnieri** | Product Owner | [@juguarnieri](https://github.com/juguarnieri) | julia.guarnieri@aluno.senai.br |
+| <img src="https://github.com/LuizGabrielLopes.png" width="60"/> | **Luiz Gabriel Lopes Carvalho** | Dev | [@LuizGabrielLopes](https://github.com/LuizGabrielLopes) | luiz.g.carvalho11@aluno.senai.br |
+| <img src="https://github.com/Caduaugusto10.png" width="60"/> | **Carlos Eduardo Ferraz Augusto** | Dev | [@Caduaugusto10](https://github.com/Caduaugusto10) | carlos.e.augusto@aluno.senai.br |
+| <img src="https://github.com/luschettini.png" width="60"/> | **Luiza Nicoluci Schettini** | Scrum Master | [@luschettini](https://github.com/luschettini) | luiza.schettini@aluno.senai.br |
